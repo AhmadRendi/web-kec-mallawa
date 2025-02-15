@@ -10,7 +10,7 @@
     </div>
     <div class="container-fluid">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body shadow p-3 bg-body rounded">
                 <h5 class="card-title mb-4">Tambah Arsip</h5>
 
                 <form action="<?= BASEURL;?>/AddDocument/addDocument" method="POST" enctype="multipart/form-data">
@@ -60,8 +60,8 @@
                         <label for="dokumen" class="form-label">Dokumen</label>
                         <input type="file" class="form-control border border-dark" id="dokumen" name="dokumen" required>
                     </div>
-                    <div class="container d-flex justify-content-center align-items-center mt-1">
-                        <div class="" style="height: 100px; width: 100px;">
+                    <div class="container d-flex justify-content-center align-items-center mt-2">
+                        <div class="" style="height: 30px; width: 100px;">
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </div>

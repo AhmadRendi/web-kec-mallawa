@@ -1,34 +1,5 @@
-<!-- <div class="sidebar">
-        <div class="p-3">
-            <h5><i class="bi bi-arrow-left me-2"></i> Keluar</h5>
-        </div>
-        <ul class="nav flex-column">
-            <li class="nav-item">
-                <a class="nav-link active" href="<?= BASEURL; ?>/Dashboard">
-                    <i class="bi bi-grid me-2"></i> Dashboard
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= BASEURL; ?>/Pengarsipan">
-                    <i class="bi bi-archive me-2"></i> Pengarsipan
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= BASEURL; ?>/Document">
-                    <i class="bi bi-plus-circle me-2"></i> Tambah
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?= BASEURL; ?>/User">
-                    <i class="bi bi-person me-2"></i> Profil
-                </a>
-            </li>
-        </ul>
-    </div> -->
-
-    <?php
-// Get user role from session
-$userRole = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'ADMIN';
+<?php
+$userRole = $_SESSION['user_role'];
 ?>
 
 <div class="sidebar">
@@ -67,8 +38,8 @@ $userRole = isset($_SESSION['user_role']) ? $_SESSION['user_role'] : 'ADMIN';
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $data['page'] === 'data-arsip' ? 'active' : ''; ?>" href="#">
-                    <i class="bi bi-check-circle me-2"></i> Data Arsip
+                <a class="nav-link <?= $data['page'] === 'data-arsip' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Arsip">
+                    <i class="bi bi-archive me-2"></i> Data Arsip
                 </a>
             </li>
         <?php endif; ?>

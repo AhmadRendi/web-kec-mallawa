@@ -17,4 +17,9 @@ class Controller {
         return $mode;
     }
 
+    public function utils($utils){
+        require_once '../app/Utils/' . $utils . '.php';
+        return new $utils();
+    }
+
 }

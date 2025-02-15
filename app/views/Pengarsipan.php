@@ -10,16 +10,13 @@
     </div>
     <div class="container-fluid">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body shadow p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Pengarsipan Dokumen</h5>
-                    <div class="search-box">
-                        <input type="text" class="form-control" id="searchInput" placeholder="Cari...">
-                    </div>
-                </div>
+                    <h5 class="card-title">Verifikasi Dokumen</h5>
+                </div>  
                 <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead class="table-dark">
+                    <table id="data_table" class="display" style="width:100%">
+                        <thead style="background-color:rgb(8, 24, 41); color:white;">
                             <tr>
                                 <th>No</th>
                                 <th>Nomor Surat</th>
@@ -42,7 +39,7 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['nomor_surat']); ?>
+                                        <?php echo htmlspecialchars($doc['nomorSurat']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -76,18 +73,23 @@
                                     </h6>
                                 </td>
                                 <td>
-                                    <div class="btn-group">
-                                        <a href="" class="btn btn-sm btn-primary"
-                                        data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id']; ?>"
-                                        ><i class="bi bi-download"></i></a>
+                                    <div class="col-auto">
+                                        <div class="d-flex">
+                                            <a href="" class="icon-button bg-success-custom text-white"
+                                            data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id']; ?>">
+                                            <i class="bi bi-download"></i>
 
-                                        <a href="" class="btn btn-sm btn-warning tampilModalUpdate"
-                                        data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $doc['id']; ?>"
-                                        ><i class="bi bi-pencil"></i></a>
+                                            <a href="" class="icon-button bg-warning-custom text-white"
+                                                data-bs-toggle="modal" data-bs-target="#successVerification" data-id="<?= $doc['id']; ?>">
+                                                <i class="bi bi-check-lg"></i>
+                                            </a>
 
-                                        <a href="" class="btn btn-sm btn-danger"
-                                        data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $doc['id']; ?>"
-                                        ><i class="bi bi-trash"></i></a>
+                                            <a href="" class="icon-button bg-danger-custom text-white"
+                                                data-bs-toggle="modal" data-bs-target="#btlVerification" data-id="<?= $doc['id']; ?>">
+                                                <i class="bi bi-x-lg"></i>
+                                            </a>
+
+                                        </div>
                                     </div>
                                 </td>   
                             </tr>
@@ -99,6 +101,7 @@
         </div>
     </div>
 </div>
+
 
 
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">

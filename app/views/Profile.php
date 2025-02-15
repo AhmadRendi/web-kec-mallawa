@@ -11,7 +11,7 @@
 <div class="content-wrapper">
     <div class="container-fluid">
         <div class="card">
-            <div class="card-body">
+            <div class="card-body shadow p-3 bg-body rounded">
                 <h5 class="card-title">Profil</h5>
                 <h6 class="card-subtitle mb-1 text-muted">Data/Admin</h6>
                 <div class="row">
@@ -33,7 +33,7 @@
                                 <a class="nav-link" id="edit-tab" data-bs-toggle="tab" href="#edit">Edit Profil</a>
                             </li>
                         </ul>
-                        <div class="tab-content">
+                        <div class="tab-content shodow-lg p-3 bg-body rounded">
                             <!-- Data Diri Tab -->
                             <div class="tab-pane fade show active" id="data">
                                 <h6 class="border-bottom pb-2 mb-3">Detail Profil</h6>

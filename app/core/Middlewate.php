@@ -1,6 +1,7 @@
 <?php
 
 class Middleware {
+    
     public static function requireAuth() {
         if (!isset($_SESSION['user_id'])) {
             header('Location: ' . BASEURL . '/login');
