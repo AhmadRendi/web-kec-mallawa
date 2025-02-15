@@ -1,0 +1,259 @@
+*{
+        font-family: "Poppins", serif;
+        font-weight: 200;
+        font-style: normal;
+}
+
+.form-label {
+    font-weight: 500;
+    color: #000000;
+}
+
+.body{
+    overflow: hidden;
+}
+
+.body-login{
+    background-image: url('https://wallpaperaccess.com/full/118569.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+    overflow: hidden;
+}
+
+.container1{
+    width: 100%;
+    min-height: 60vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img-logo-login {
+    width: 150px;
+    height: 150px;
+}
+
+.poppins-thin {
+    font-family: "Poppins", serif;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+.header-title {
+    color: #000;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.login-btn {
+    background: #4834d4;
+    border: none;
+    width: 100%;
+    padding: 12px;
+    border-radius: 25px;
+    color: white;
+    font-weight: 500;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+.login-btn:hover {
+    background: #686de0;
+}
+
+.create-account {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.create-account a {
+    color: #4834d4;
+    text-decoration: none;
+}
+
+.input-group {
+    background: white;
+    border-radius: 25px;
+    margin-bottom: 1rem;
+}
+
+.input-group-text {
+    background: transparent;
+    border: none;
+    padding-right: 0;
+}
+
+/* .form-control-1{
+    border: none;
+    margin-left: 0;
+    border-radius: 25px;
+} */
+
+.form-control:focus {
+    box-shadow: none;
+}
+
+.wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #212529;
+    color: #fff;
+    position: fixed;
+    height: 100vh;
+    z-index: 1000;
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 250px;
+    background: white;
+    z-index: 999;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.main-content {
+    margin-left: 250px;
+    padding: 20px;
+    width: calc(100% - 250px);
+    }
+
+.sidebar .nav-link {
+    color: #fff;
+    padding: 10px 20px;
+    opacity: 0.8;
+}
+
+.sidebar .nav-link:hover {
+    opacity: 1;
+    background-color: rgba(255,255,255,0.1);
+}
+
+.sidebar .nav-link.active {
+    opacity: 1;
+    color: #ff6b35;
+}
+
+.stats-card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.stats-icon {
+    background-color: #000;
+    color: #fff;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+/* Add to existing styles */
+.table-responsive {
+    margin: 0;
+    padding: 0;
+}
+
+.table th {
+    background-color: #343a40;
+    color: white;
+}
+
+.search-box {
+    width: 300px;
+}
+
+.btn-group .btn {
+    padding: 0.25rem 0.5rem;
+}
+
+.btn-group .btn i {
+    font-size: 0.875rem;
+}
+
+.modal-content {
+    border-radius: 10px;
+}
+
+.modal-body {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.modal-footer {
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Profile styles */
+.profile-img-container {
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.nav-tabs .nav-link {
+    color: #495057;
+}
+
+.nav-tabs .nav-link.active {
+    color: #ff6b35;
+    border-bottom: 2px solid #ff6b35;
+}
+
+.tab-content {
+    padding: 20px 0;
+}
+
+.card-title {
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.card-subtitle {
+    font-size: 0.9rem;
+}
+
+/* Form styles */
+.form-label {
+    font-weight: 500;
+}
+
+.form-control {
+    border-radius: 4px;
+    border: 1px solid #ced4da;
+}
+
+.form-control:focus {
+    border-color: #ff6b35;
+    box-shadow: 0 0 0 0.2rem rgba(255, 107, 53, 0.25);
+}
+
+.btn-primary {
+    background-color: #ff6b35;
+    border-color: #ff6b35;
+}
+
+.btn-primary:hover {
+    background-color: #e85d2b;
+    border-color: #e85d2b;
+}
