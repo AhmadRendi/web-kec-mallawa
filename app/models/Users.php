@@ -1,6 +1,6 @@
 <?php
 
-class User {
+class Users {
 
     private $table = 'user';
 
@@ -68,6 +68,46 @@ class User {
             $this->db->query($query);
 
             $this->db->bind(1, $email);
+
+            return $this->db->single();
+        }catch(PDOException $e){
+            throw new PDOException($e->getMessage());
+        }
+    }
+
+    public function update($data){
+        try{
+            $query = "UPDATE $this->table SET username = ?, 
+                password = ?, role = ?, name_user = ?, email = ?, address = ?, 
+                position = ?, picture = ? WHERE id_user = ?";
+
+            $this->db->query($query);
+
+            $this->db->bind(1, $data['username']);
+            $this->db->bind(2, $data['password']);
+            $this->db->bind(3, $data['role']);
+            $this->db->bind(4, $data['name_user']);
+            $this->db->bind(5, $data['email']);
+            $this->db->bind(6, $data['address']);
+            $this->db->bind(7, $data['position']);
+            $this->db->bind(8, $data['picture']);
+            $this->db->bind(9, $data['id']);
+
+            $this->db->execute();
+
+            return $this->db->rowCount();
+        }catch(PDOException $e){
+            throw new PDOException($e->getMessage());
+        }
+    }
+
+    public function getUser($id){
+        try{
+            $query = "SELECT * FROM $this->table WHERE id_user = ?";
+
+            $this->db->query($query);
+
+            $this->db->bind(1, $id);
 
             return $this->db->single();
         }catch(PDOException $e){

@@ -11,10 +11,9 @@ class Login extends Controller{
         $this->view('template/Footer');
     }
 
-
     public function session(){
         try{
-            $model = $this->model('User');
+            $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 
             $data = $_POST['data'];
@@ -23,8 +22,10 @@ class Login extends Controller{
 
             if($dataUser['role'] == 'ADMIN'){
                 $_SESSION['user_role'] = 'ADMIN';
+                $_SESSION['user_id'] = $dataUser['id_user'];
             }else if($dataUser['role'] == 'KASI'){
                 $_SESSION['user_role'] = 'KASI';
+                $_SESSION['user_id'] = $dataUser['id_user'];
             }
             echo json_encode(['status' => 'success']);
         }catch(Exception $e){

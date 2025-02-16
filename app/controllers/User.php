@@ -6,28 +6,49 @@ class User extends Controller{
 
 
     public function index(){
-        $data['user'] = [
-            'nama_lengkap' => 'Ikhwan Taufik',
-            'username' => 'Ikhwan Taufik',
-            'password' => 'Ikhwan2000',
-            'posisi' => 'Administrator',
-            'alamat' => 'Maros',
-            'email' => 'ikhwantaufik2000@gmail.com',
-            'foto' => 'profile.jpg'
-        ];
+        try{
+            $model = $this->model('Users');
+            $user = $this->util('UserUtils', $model);
 
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('Profile', $data);
-        $this->view('template/Footer');
+            $dataUser = $user->getUser($data);
+
+            $data['user'] = $dataUser;
+
+            $this->view('template/Header');
+            $this->view('template/Sidebar');
+            $this->view('Profile', $data);
+            $this->view('template/Footer');
+        }catch(Exception $e){
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+        
     }
 
     public function editProfile(){
-        $data = $_POST;
+        try{
+            $data = $_POST;
+            $file = $_FILES['picture'];
 
-        $this->view('template/Header');
-        $this->view('template/Sidebar');
-        $this->view('Profile', $data);
-        $this->view('template/Footer');
+            $model = $this->model('Users');
+            $user = $this->util('UserUtils', $model);
+
+            $dataResponse = $user->updateUser($data, $file);
+
+            // echo $file['name'];
+
+            // var_dump($file['name']);
+
+            // var_dump($data['picture']);
+            // var_dump($data);
+            // $this->view('template/Header');
+            // $this->view('template/Sidebar');
+            // $this->view('Profile', $data);
+            // $this->view('template/Footer');
+
+            echo json_encode(['status' => 'success', 'data' => $dataResponse]);
+        }catch(Exception $e){
+            echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+        }
+        
     }
 }

@@ -15,7 +15,7 @@ class Registration extends Controller{
     public function addUser(){
         try {
 
-            $model = $this->model('User');
+            $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 
             $user->addUser($_POST);
