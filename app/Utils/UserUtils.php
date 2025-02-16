@@ -92,10 +92,9 @@ class UserUtils{
 
     public function login($data){
         try{
-            $this->validate($data);
             $user = $this->modelUser->getUsername($data['username']);
             if($user){
-                if(password_verify($data['password'], $user['password'])){
+                if($this->verifyPassword($data['password'], $user['password'])){
                     return $user;
                 }else{
                     throw new Exception('Password is wrong');
@@ -103,6 +102,16 @@ class UserUtils{
             }else{
                 throw new Exception('Username is not found');
             }
+            // var_dump($user);
+            // if($user){
+            //     // if(password_verify($data['password'], $user['password'])){
+            //     //     return $user;
+            //     // }else{
+            //     //     throw new Exception('Password is wrong');
+            //     // }
+            // }else{
+            //     throw new Exception('Username is not found');
+            // }
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }

@@ -78,9 +78,44 @@ $( function () {
     });
 
 
-    $('#login-form').on('submit', function(event) {
-            event.preventDefault();
-            var data = $(this).serialize();
+    // $('#login_form').on('submit', function(event) {
+    //         event.preventDefault();
+    //         var data = $(this).serialize();
+
+            // var params = new URLSearchParams(data);
+
+            // var username = params.get('username');
+            // var password = params.get('password');
+
+            // var dataToSend = {
+            //     username: username,
+            //     password: password
+            // };
+
+    //     $.ajax({
+    //         url: "http://localhost/web-ic/public/Login/session",
+    //         data: {data : dataToSend},
+    //         method: 'post',
+    //         // dataType: "json",
+    //         success: function(response) {
+    //             console.log(response);
+    //             if(response == "Success"){
+    //                 console.log(response);
+    //                 window.location.href = "http://localhost/web-ic/public/Dashboard";
+    //             }else {
+    //                 alert("Username atau password salah");
+    //             }
+    //         },
+    //     });
+
+        
+    // });
+
+    // Login User
+        $('#login_form').on('submit', function(e) {
+
+            e.preventDefault();
+            let data = $(this).serialize();
 
             var params = new URLSearchParams(data);
 
@@ -92,49 +127,28 @@ $( function () {
                 password: password
             };
 
-        $.ajax({
-            url: "http://localhost/web-ic/public/Login/session",
-            data: {data : dataToSend},
-            method: 'post',
-            // dataType: "json",
-            success: function(response) {
-                console.log(response);
-                if(response == "Success"){
-                    console.log(response);
-                    window.location.href = "http://localhost/web-ic/public/Dashboard";
-                }else {
-                    alert("Username atau password salah");
-                }
-            },
-        });
+            console.log(dataToSend);
 
-        // Login User
-        $('#form_registration').on('submit', function(e) {
-            e.preventDefault();
-            let data = $(this).serialize();
-            
-            $('#errorRegistration').modal('hide');
-        
             $.ajax({
-                url: 'http://localhost/web-ic/public/Registration/addUser',
-                data: data,
+                url: 'http://localhost/web-ic/public/Login/session',
+                data: {data: dataToSend},
                 method: 'post',
                 dataType: 'json',
                 success: function(data, textStatus, jqXHR) {
                     console.log(data);
                     if (data.status === 'success') {
-                        $('#successRegistration').modal('show');
+                        // $('#successRegistration').modal('show');
+                        window.location.href = "http://localhost/web-ic/public/Dashboard";
                     } else {
-                        $('#errorRegistration .modal-body').text(data.message);
-                        $('#errorRegistration').modal('show');
+                        $('#errorLogin .modal-body').text(data.message);
+                        $('#errorLogin').modal('show');
                     }
                 },
                 error: function(jqXHR, textStatus, errorThrown) {
-                    $('#errorRegistration .modal-body').text('Terjadi kesalahan: ' + errorThrown);
-                    $('#errorRegistration').modal('show');
+                    $('#errorLogin .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                    $('#errorLogin').modal('show');
                 }
             });
         });
-    });
 
 });
