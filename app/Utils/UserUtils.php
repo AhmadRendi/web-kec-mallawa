@@ -118,104 +118,65 @@ class UserUtils{
     }
 
     private function uploadImage($file) {
-        // $fileName = $file['name'];
-        // $fileSize = $file['size'];
-        // $fileError = $file['error'];
-        // $fileTmp = $file['tmp_name'];
+        $fileName = $file['name'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        $fileTmp = $file['tmp_name'];
 
-        // $fileExt = explode('.', $fileName);
-        // $fileActualExt = strtolower(end($fileExt));
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
     
-        // // Tentukan folder tujuan
-        // // $folderDestination =  '/opt/lampp/htdocs/web-ic/public/img/asset/';
-        // $folderDestination =  '../public/img/asset/';
+        // Tentukan folder tujuan
+        $folderDestination =  '../public/img/asset/';
 
-        // if(!is_dir($folderDestination)){
-        //     throw new Exception('Directory is found ' . $folderDestination);
-        // }
-
-        // $fileNameNew = uniqid('', true) . "." . $fileActualExt;
-        // $fileDestination = $folderDestination . $fileNameNew;
-    
-        // $allowed = ['jpg', 'jpeg', 'png'];
-    
-        // // Validasi ekstensi file
-        // if (in_array($fileActualExt, $allowed)) {
-        //     if ($fileError === 0) {
-        //         if ($fileSize < 1000000) {
-        //             // Validasi apakah direktori tujuan ada, jika tidak ada, buat direktori
-        //             if (!is_dir($folderDestination)) {
-        //                 if (!mkdir($folderDestination, 0755, true)) {
-        //                     throw new Exception('Cannot create directory: ' . $folderDestination);
-        //                 }
-        //             }
-    
-        //             // Debug: Periksa apakah file temporary ada
-        //             if (!file_exists($fileTmp)) {
-        //                 throw new Exception('Temporary file does not exist: ' . $fileTmp);
-        //             }
-    
-        //             // Pindahkan file ke direktori tujuan
-        //             if (move_uploaded_file($fileTmp, $fileDestination)) {
-        //                 return $fileNameNew; // Kembalikan nama file baru
-        //             } else {
-        //                 // throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
-        //                 throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
-        //             }
-        //         } else {
-        //             throw new Exception('Your file is too big');
-        //         }
-        //     } else {
-        //         throw new Exception('There was an error uploading your file');
-        //     }
-        // } else {
-        //     throw new Exception('You cannot upload files of this type');
-        // }
-        $directory = '../public/img/asset/';
-
-        var_dump($file);
-
-        if(!is_dir($directory)){
+        if(!is_dir($folderDestination)){
             throw new Exception('Directory is not found ' . $folderDestination);
         }
 
-        $namaFile = $file['name'];
-        $ukuranFile = $file['size'];
-        $error = $file['error'];
-        $tempName = $file['tmp_name'];
-      
-        
-        $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        
-        if(!in_array($ekstensiGambar, $ekstensiGambarValid)){
-            return false;
+        $fileNameNew = uniqid('', true) . "." . $fileActualExt;
+        $fileDestination = $folderDestination . $fileNameNew;
+    
+        $allowed = ['jpg', 'jpeg', 'png'];
+    
+        // Validasi ekstensi file
+        if (in_array($fileActualExt, $allowed)) {
+            if ($fileError === 0) {
+                if ($fileSize < 1000000) {
+                    // Validasi apakah direktori tujuan ada, jika tidak ada, buat direktori
+                    if (!is_dir($folderDestination)) {
+                        if (!mkdir($folderDestination, 0755, true)) {
+                            throw new Exception('Cannot create directory: ' . $folderDestination);
+                        }
+                    }
+    
+                    // Debug: Periksa apakah file temporary ada
+                    if (!file_exists($fileTmp)) {
+                        throw new Exception('Temporary file does not exist: ' . $fileTmp);
+                    }
+    
+                    // Pindahkan file ke direktori tujuan
+                    if (move_uploaded_file($fileTmp, $fileDestination)) {
+                        return $fileNameNew;
+                    } else {
+                        throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
+                    }
+                } else {
+                    throw new Exception('Your file is too big');
+                }
+            } else {
+                throw new Exception('There was an error uploading your file');
+            }
+        } else {
+            throw new Exception('You cannot upload files of this type');
         }
-
-        $namaFileBaru = uniqid();
-        $namaFileBaru .= '.';
-        $namaFileBaru .= $ekstensiGambar;
-        $namaFileBaru = $directory . $namaFileBaru;
-      
-        $error =  $file['error'];
-
-        $move = move_uploaded_file($tempName, $namaFileBaru);
-        if($move){
-            return $namaFileBaru;
-        }else{
-            var_dump($tempName);
-            return $tempName;
-        }
-        // return $namaFileBaru;
-        // return $tempName;
     }
 
     public function updateUser($data, $file){
         try{
             $filename = $this->uploadImage($file);
-            // $filename = $file['name'];
-            return $filename;
+            $data['id'] = $_SESSION['user_id'];
+            $this->modelUser->update($data, $filename);
+            return "success";
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }

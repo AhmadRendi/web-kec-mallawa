@@ -10,7 +10,7 @@ class User extends Controller{
             $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 
-            $dataUser = $user->getUser($data);
+            $dataUser = $user->getUser();
 
             $data['user'] = $dataUser;
 
@@ -29,21 +29,17 @@ class User extends Controller{
             $data = $_POST;
             $file = $_FILES['picture'];
 
+            var_dump($file);
+
             $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 
             $dataResponse = $user->updateUser($data, $file);
 
-            // echo $file['name'];
-
-            // var_dump($file['name']);
-
-            // var_dump($data['picture']);
-            // var_dump($data);
-            // $this->view('template/Header');
-            // $this->view('template/Sidebar');
-            // $this->view('Profile', $data);
-            // $this->view('template/Footer');
+            $this->view('template/Header');
+            $this->view('template/Sidebar');
+            $this->view('Profile');
+            $this->view('template/Footer');
 
             echo json_encode(['status' => 'success', 'data' => $dataResponse]);
         }catch(Exception $e){

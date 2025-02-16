@@ -75,23 +75,19 @@ class Users {
         }
     }
 
-    public function update($data){
+    public function update($data, $filename){
         try{
-            $query = "UPDATE $this->table SET username = ?, 
-                password = ?, role = ?, name_user = ?, email = ?, address = ?, 
+            $query = "UPDATE $this->table SET password = ?, name_user = ?, address = ?, 
                 position = ?, picture = ? WHERE id_user = ?";
 
             $this->db->query($query);
 
-            $this->db->bind(1, $data['username']);
-            $this->db->bind(2, $data['password']);
-            $this->db->bind(3, $data['role']);
-            $this->db->bind(4, $data['name_user']);
-            $this->db->bind(5, $data['email']);
-            $this->db->bind(6, $data['address']);
-            $this->db->bind(7, $data['position']);
-            $this->db->bind(8, $data['picture']);
-            $this->db->bind(9, $data['id']);
+            $this->db->bind(1, $data['password']);
+            $this->db->bind(2, $data['name_user']);
+            $this->db->bind(3, $data['address']);
+            $this->db->bind(4, $data['position']);
+            $this->db->bind(5, $filename);
+            $this->db->bind(6, $data['id']);
 
             $this->db->execute();
 

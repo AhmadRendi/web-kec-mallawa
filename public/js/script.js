@@ -74,6 +74,48 @@ $(function () {
             }
         });
     });
+
+    // upload Document
+    $('#uploadDocument').on('submit', function(e){
+        e.preventDefault();
+        let data = new FormData(this);
+
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}:`, value);
+        }
+
+        $.ajax({
+            url: 'http://localhost/web-ic/public/Document/addDocument',
+            data: data,
+            method: 'post',
+            processData: false, // Penting untuk FormData
+            contentType: false,
+            // dataType: 'json',
+            success: function(data) {
+                // Pastikan data yang diterima adalah objek JSON
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#successUpload').modal('show');
+                } else {
+                    $('#failedUpload .modal-body').text(data.message);
+                    $('#failedUpload').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#failedUpload .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#failedUpload').modal('show');
+            }
+        });
+    });
+    // Event listener untuk modal yang ditutup
+    $('#failedUpload').on('hidden.bs.modal', function () {
+        location.reload(); // Refresh halaman
+    });
+
+    $('#successUpload').on('hidden.bs.modal', function () {
+        location.reload(); // Refresh halaman
+    });
+
 });
 
 // Chart Dahsboard Document

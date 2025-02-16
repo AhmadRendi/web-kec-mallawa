@@ -11,7 +11,7 @@ $userRole = $_SESSION['user_role'];
     <ul class="nav flex-column">
         <!-- Dashboard - Visible to all roles -->
         <li class="nav-item">
-            <a class="nav-link <?= $data['page'] === 'dashboard' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Dashboard">
+            <a class="nav-link" href="<?= BASEURL ?>/Dashboard">
                 <i class="bi bi-grid me-2"></i> Dashboard
             </a>
         </li>
@@ -19,12 +19,12 @@ $userRole = $_SESSION['user_role'];
         <?php if ($userRole === 'ADMIN'): ?>
             <!-- Admin Menu Items -->
             <li class="nav-item">
-                <a class="nav-link <?= $data['page'] === 'pengarsipan' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Pengarsipan">
+                <a class="nav-link" href="<?= BASEURL ?>/Pengarsipan">
                     <i class="bi bi-archive me-2"></i> Pengarsipan
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $data['page'] === 'tambah' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Document">
+                <a class="nav-link" href="<?= BASEURL ?>/Document">
                     <i class="bi bi-plus-circle me-2"></i> Tambah
                 </a>
             </li>
@@ -33,12 +33,12 @@ $userRole = $_SESSION['user_role'];
         <?php if ($userRole === 'KASI'): ?>
             <!-- Super Admin Menu Items -->
             <li class="nav-item">
-                <a class="nav-link <?= $data['page'] === 'verifikasi' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Verification">
+                <a class="nav-link" href="<?= BASEURL ?>/Verification">
                     <i class="bi bi-check-circle me-2"></i> Verifikasi
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link <?= $data['page'] === 'data-arsip' ? 'active' : ''; ?>" href="<?= BASEURL ?>/Arsip">
+                <a class="nav-link" href="<?= BASEURL ?>/Arsip">
                     <i class="bi bi-archive me-2"></i> Data Arsip
                 </a>
             </li>
@@ -46,7 +46,7 @@ $userRole = $_SESSION['user_role'];
 
         <!-- Profile - Visible to all roles -->
         <li class="nav-item">
-            <a class="nav-link <?= $data['page'] === 'profile' ? 'active' : ''; ?>" href="<?= BASEURL ?>/User">
+            <a class="nav-link" href="<?= BASEURL ?>/User">
                 <i class="bi bi-person me-2"></i> Profil
             </a>
         </li>
