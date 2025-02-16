@@ -22,4 +22,9 @@ class Controller {
         return new $utils();
     }
 
+    public function util($utils, $model){
+        require_once '../app/Utils/' . $utils . '.php';
+        return new $utils($model); 
+    }
+
 }

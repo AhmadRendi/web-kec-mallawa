@@ -107,6 +107,34 @@ $( function () {
                 }
             },
         });
+
+        // Login User
+        $('#form_registration').on('submit', function(e) {
+            e.preventDefault();
+            let data = $(this).serialize();
+            
+            $('#errorRegistration').modal('hide');
+        
+            $.ajax({
+                url: 'http://localhost/web-ic/public/Registration/addUser',
+                data: data,
+                method: 'post',
+                dataType: 'json',
+                success: function(data, textStatus, jqXHR) {
+                    console.log(data);
+                    if (data.status === 'success') {
+                        $('#successRegistration').modal('show');
+                    } else {
+                        $('#errorRegistration .modal-body').text(data.message);
+                        $('#errorRegistration').modal('show');
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    $('#errorRegistration .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                    $('#errorRegistration').modal('show');
+                }
+            });
+        });
     });
 
 });

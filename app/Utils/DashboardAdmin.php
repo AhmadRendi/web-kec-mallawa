@@ -531,26 +531,6 @@ class DashboardAdmin {
     
         $categories = array_unique(array_column($data, 'kategori'));
 
-        // foreach ($categories as $category) {
-        //     $dataset = [
-        //         'label' => $category,
-        //         'data' => [],
-        //         'borderColor' => '#ffd700',
-        //         'tension' => 0.4,
-        //         'fill' => false
-        //     ];
-    
-        //     for ($year = $startYear; $year <= $endYear; $year++) {
-        //         if (isset($yearlyCounts[$year][$category])) {
-        //             $dataset['data'][] = $yearlyCounts[$year][$category];
-        //         } else {
-        //             $dataset['data'][] = 0;
-        //         }
-        //     }
-    
-        //     $result['datasets'][] = $dataset;
-        // }
-
         $colors = [
             '#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6',
             '#33FFF6', '#F633FF', '#F6FF33', '#33F6FF', '#FF33A1',
@@ -562,7 +542,7 @@ class DashboardAdmin {
             $dataset = [
                 'label' => $category,
                 'data' => [],
-                'borderColor' => $colors[$colorIndex % count($colors)], // Memilih warna dari array
+                'borderColor' => $colors[$colorIndex % count($colors)],
                 'tension' => 0.4,
                 'fill' => false
             ];
