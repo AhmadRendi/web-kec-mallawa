@@ -19,7 +19,7 @@
             </div>
         </div>
         <div class="container1">
-            <form id="login-form">
+            <form id="login_form">
                 <div class="input-group">
                     <span class="input-group-text">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -43,6 +43,7 @@
                 </div>
     
                 <button type="submit" class="login-btn">Masuk</button>
+                <!-- <button type="submit" class="">Daftar</button> -->
     
                 <div class="create-account" style="font-weight: bold; color: black;">
                     Belum memiliki akun? <a style="color: blue; font-weight: bold;" href="<?= BASEURL; ?>/Registration">Buat</a>
@@ -50,3 +51,44 @@
             </form>
         </div>
     </div>
+
+
+    <!-- Modal untuk sukses registrasi
+<div class="modal fade" id="successLogin" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successModalLabel">Sukses!</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Registrasi Anda berhasil!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+<!-- Modal untuk Menampilkan Pesan Kesalahan -->
+<div class="modal fade" id="errorLogin" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="errorModalLabel">Kesalahan</h5>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Pesan kesalahan akan ditampilkan di sini -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>

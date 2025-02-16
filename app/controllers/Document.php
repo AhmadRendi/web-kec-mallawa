@@ -2,6 +2,7 @@
 
 session_start();
 
+
 class Document extends Controller{
 
     public function index(){
@@ -12,7 +13,22 @@ class Document extends Controller{
     }
 
     public function addDocument(){
-        $data = $_POST;
-        var_dump($data);
+        header('Content-Type: application/json');
+        try{
+            $model = $this->model('Documents');
+            $document = $this->util('DocumentUtil', $model);
+
+            $data = $_POST;
+            $file = $_FILES['dokumen'];
+
+            $document->addDocument($data, $file);
+
+            echo json_encode(['status' => 'success']);
+            exit;
+        }catch (Exception $e){
+            echo json_encode(['status' => "Failed" ,'message' => $e->getMessage()]);
+            exit;
+        }
     }
+
 }

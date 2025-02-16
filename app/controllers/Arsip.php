@@ -2,7 +2,7 @@
 
 session_start();
 
-class verification extends Controller{
+class Arsip extends Controller {
 
     public function index(){
 
@@ -231,20 +231,7 @@ class verification extends Controller{
 
         $this->view('template/Header');
         $this->view('template/Sidebar');
-        $this->view('Verification', $data); 
+        $this->view('Arsip', $data);
         $this->view('template/Footer');
     }
-
-    public function verification(){
-        echo "Verification";
-    }
-
-    public function cancelVariation(){
-        echo "Cancel Variation";
-    }
-
-    // public function logout(){
-    //     session_destroy();
-    //     header('Location: ' . BASEURL . '/login');
-    // }
 }

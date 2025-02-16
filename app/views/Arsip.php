@@ -26,7 +26,7 @@
                                 <th>Pengirim</th>
                                 <th>Penerima</th>
                                 <th>Dokumen</th>
-                                <th>Aksi</th>
+                                <th>Keterangan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,83 +73,15 @@
                                     </h6>
                                 </td>
                                 <td>
-                                    <div class="col-auto">
-                                        <div class="d-flex">
-                                            <a href="" class="icon-button bg-success-custom text-white"
-                                            data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id']; ?>">
-                                            <i class="bi bi-download"></i>
-
-                                            <a href="" class="icon-button bg-warning-custom text-white"
-                                                data-bs-toggle="modal" data-bs-target="#successVerification" data-id="<?= $doc['id']; ?>">
-                                                <i class="bi bi-check-lg"></i>
-                                            </a>
-
-                                            <a href="" class="icon-button bg-danger-custom text-white"
-                                                data-bs-toggle="modal" data-bs-target="#btlVerification" data-id="<?= $doc['id']; ?>">
-                                                <i class="bi bi-x-lg"></i>
-                                            </a>
-
-                                        </div>
-                                    </div>
-                                </td>   
+                                    <h6>
+                                        <?php echo htmlspecialchars($doc['ket']); ?>
+                                    </h6>
+                                </td>
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Download Confirmation Modal -->
-<div class="modal fade" id="downloadModal" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="downloadModalLabel">Konfirmasi Download</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Yakin ingin mendownload dokumen ini?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="confirmDownload">Download</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Verifikasi Confirmation Modal -->
-<div class="modal fade" id="successVerification" tabindex="-1" aria-labelledby="downloadModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="downloadModalLabel">Konfirmasi Verifikasi</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>Yakin ingin Memverifikasi dokumen ini?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-primary" id="confirmVerification">Verifikasi</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Delete Confirmation Modal -->
-<div class="modal fade" id="btlVerification" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Tidak Verifikasi data ini?</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger" id="cancelVerification">Batal Verifikasi</button>
             </div>
         </div>
     </div>

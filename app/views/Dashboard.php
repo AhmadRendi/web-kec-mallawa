@@ -11,7 +11,7 @@
 
         <div class="container-fluid">
             <div class="card mb-4">
-                <div class="card-body">
+                <div class="card-body shadow p-3 bg-body rounded">
                     <h5 class="card-title mb-4">Sistem Pengarsipan Dokumen</h5>
                     
                     <div class="row">

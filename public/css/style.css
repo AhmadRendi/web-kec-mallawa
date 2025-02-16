@@ -257,3 +257,44 @@
     background-color: #e85d2b;
     border-color: #e85d2b;
 }
+
+.icon-button {
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5px;
+    border: none;
+}
+
+.icon-button i {
+    font-size: 1.5rem;
+}
+
+.bg-success-custom {
+    background-color: #28a745;
+}
+
+.bg-danger-custom {
+    background-color: #dc3545;
+}
+
+.bg-warning-custom {
+    background-color: #e2be31;
+}
+
+
+.table-container {
+    max-height: 650px; /* Atur tinggi sesuai kebutuhan */
+    overflow-y: auto; /* Mengaktifkan scroll vertikal */
+}
+.table {
+    table-layout: fixed; /* Memastikan kolom memiliki lebar tetap */
+}
+.table th {
+    position: sticky; /* Membuat header tetap di atas */
+    top: 0; /* Posisi tetap di atas */
+    z-index: 10; /* Pastikan header di atas konten */
+}
