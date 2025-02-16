@@ -83,6 +83,7 @@
 
                                 <!-- Edit Profil Tab -->
                                 <div class="tab-pane fade" id="edit">
+                                    <!-- <form action="<?= BASEURL;?>/User/editProfile" enctype="multipart/form-data" method="post"> -->
                                     <form id="updateProfile" enctype="multipart/form-data" method="post">
                                         <div class="mb-3">
                                             <label for="name_user" class="form-label">Nama Lengkap</label>

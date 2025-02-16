@@ -39,12 +39,12 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['nomorSurat']); ?>
+                                        <?php echo htmlspecialchars($doc['nmr_surat']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo date('Y-m-d', strtotime($doc['tanggal'])); ?>
+                                        <?php echo date('Y-m-d', strtotime($doc['date'])); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -54,7 +54,7 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['kategori']); ?>
+                                        <?php echo htmlspecialchars($doc['kategory']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -69,26 +69,25 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['dokumen']); ?>
+                                        <?php echo htmlspecialchars($doc['document']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <div class="col-auto">
                                         <div class="d-flex">
-                                            <a href="" class="icon-button bg-success-custom text-white"
-                                            data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id']; ?>">
+                                            <a href="" class="icon-button bg-success-custom text-black"
+                                            data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id_document']; ?>">
                                             <i class="bi bi-download"></i>
 
-                                            <a href="" class="icon-button bg-warning-custom text-white"
-                                                data-bs-toggle="modal" data-bs-target="#successVerification" data-id="<?= $doc['id']; ?>">
+                                            <a href="" class="icon-button bg-warning-custom text-white tampilModalUpdate"
+                                                data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $doc['id_document']; ?>">
                                                 <i class="bi bi-check-lg"></i>
                                             </a>
 
                                             <a href="" class="icon-button bg-danger-custom text-white"
-                                                data-bs-toggle="modal" data-bs-target="#btlVerification" data-id="<?= $doc['id']; ?>">
+                                                data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $doc['id_document']; ?>">
                                                 <i class="bi bi-x-lg"></i>
                                             </a>
-
                                         </div>
                                     </div>
                                 </td>   
@@ -102,8 +101,6 @@
     </div>
 </div>
 
-
-
 <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -112,11 +109,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForm" action="<?= BASEURL; ?>/Pengarsipan/updateData" method="POST">
+                <form id="editForms" action="<?= BASEURL; ?>/Pengarsipan/updateData" method="POST">
                     <input type="hidden" name="id" id="editId">
                     <div class="mb-3">
                         <label for="editNomorSurat" class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control" id="editNomorSurat" name="nomor_surat" required>
+                        <input type="text" class="form-control" id="editNomorSurat" name="nomor_surat" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editTanggal" class="form-label">Tanggal</label>
@@ -125,8 +122,8 @@
                     <div class="mb-3">
                         <label for="editJenis" class="form-label">Jenis</label>
                         <select class="form-select" id="editJenis" name="jenis" required>
-                            <option value="Surat Masuk">Surat Masuk</option>
-                            <option value="Surat Keluar">Surat Keluar</option>
+                            <option value="Masuk">Masuk</option>
+                            <option value="Keluar">Keluar</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -143,11 +140,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="editDokumen" class="form-label">Dokumen</label>
-                        <input type="file" class="form-control" id="editDokumen" name="dokumen">
+                        <input type="file" class="form-control" id="editDokumen" name="dokumen" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Submit</button>
                     </div>
                 </form>
             </div>
@@ -176,9 +173,13 @@
 </div>
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="deleteModal" tabindex="-1">
+<div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteModalLabel">Konfirmasi Penghapusan</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
             <div class="modal-body">
                 <p>Hapus data ini?</p>
             </div>

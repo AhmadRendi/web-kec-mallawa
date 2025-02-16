@@ -122,7 +122,13 @@ class UserUtils{
         $fileSize = $file['size'];
         $fileError = $file['error'];
         $fileTmp = $file['tmp_name'];
+        $fileName = $file['name'];
+        $fileSize = $file['size'];
+        $fileError = $file['error'];
+        $fileTmp = $file['tmp_name'];
 
+        $fileExt = explode('.', $fileName);
+        $fileActualExt = strtolower(end($fileExt));
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
     
@@ -214,8 +220,9 @@ class UserUtils{
     public function updateUser($data, $file){
         try{
             $filename = $this->uploadImage($file);
-            // $filename = $file['name'];
-            return $filename;
+            $data['id'] = $_SESSION['user_id'];
+            $this->modelUser->update($data, $filename);
+            return "success";
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
