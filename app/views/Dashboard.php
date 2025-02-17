@@ -2,9 +2,9 @@
         <div class="header mb-4 d-flex justify-content-between align-items-center">
             <h4 class="m-0">Kantor Kecamatan Mallawa</h4>
             <div class="d-flex align-items-center">
-                <span class="me-2">Ikhwan Taufik</span>
-                <span class="text-muted small">Administrator</span>
-                <img src="https://tse3.mm.bing.net/th?id=OIP.AMUdcdnCeqU2buj3WLaR-QHaHa&pid=Api&P=0&h=220" 
+                <span class="me-2"><?= $_SESSION['name_user']?></span>
+                <span class="text-muted small"><?= $_SESSION['position']?></span>
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture']?>" 
                 class="rounded-circle ms-2" alt="Profile" style="width: 40px; height: 40px;">
             </div>
         </div>
@@ -23,7 +23,7 @@
                                         <i class="bi bi-envelope"></i>
                                     </div>
                                     <div>
-                                        <h3 class="m-0">0</h3>
+                                        <h3 class="m-0"><?php echo $data['todayDocuments'] ?></h3>
                                         <h6 class="text-muted">Dokumen</h6>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                         <i class="bi bi-envelope"></i>
                                     </div>
                                     <div>
-                                        <h3 class="m-0">34</h3>
+                                        <h3 class="m-0"><?php echo $data['monthDocuments'] ?></h3>
                                         <h6 class="text-muted">Dokumen</h6>
                                     </div>
                                 </div>
@@ -53,7 +53,7 @@
                                         <i class="bi bi-envelope"></i>
                                     </div>
                                     <div>
-                                        <h3 class="m-0">128</h3>
+                                        <h3 class="m-0"><?php echo $data['yearDocuments'] ?></h3>
                                         <h6 class="text-muted">Dokumen</h6>
                                     </div>
                                 </div>
@@ -68,7 +68,7 @@
                                         <i class="bi bi-envelope"></i>
                                     </div>
                                     <div>
-                                        <h3 class="m-0">162</h3>
+                                        <h3 class="m-0"><?php echo $data['totalDocument'] ?></h3>
                                         <h6 class="text-muted">Dokumen</h6>
                                     </div>
                                 </div>

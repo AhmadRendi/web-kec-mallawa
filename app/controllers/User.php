@@ -12,7 +12,7 @@ class User extends Controller{
 
             $dataUser = $user->getUser();
 
-            $data['user'] = $dataUser;
+            $data = $dataUser;
 
             $this->view('template/Header');
             $this->view('template/Sidebar');
@@ -25,26 +25,21 @@ class User extends Controller{
     }
 
     public function editProfile(){
+        header('Content-Type: application/json');
         try{
             $data = $_POST;
             $file = $_FILES['picture'];
 
-            var_dump($file);
-
             $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 
-            $dataResponse = $user->updateUser($data, $file);
+            $user->updateUser($data, $file);
 
-            $this->view('template/Header');
-            $this->view('template/Sidebar');
-            $this->view('Profile');
-            $this->view('template/Footer');
-
-            echo json_encode(['status' => 'success', 'data' => $dataResponse]);
+            echo json_encode(['status' => 'success']);
+            exit;
         }catch(Exception $e){
             echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
+            exit;
         }
-        
     }
 }

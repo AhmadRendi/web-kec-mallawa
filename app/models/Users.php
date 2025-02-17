@@ -91,7 +91,7 @@ class Users {
 
             $this->db->execute();
 
-            return $this->db->rowCount();
+            return $this->db->single();
         }catch(PDOException $e){
             throw new PDOException($e->getMessage());
         }

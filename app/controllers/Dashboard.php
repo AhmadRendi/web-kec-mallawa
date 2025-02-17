@@ -7,16 +7,19 @@ class Dashboard extends Controller{
     public function index(){
         $role = $_SESSION['user_role'];
         if($role == 'ADMIN'){
+
+            $model = $this->model('Documents');
+            $document = $this->util('DocumentUtil', $model);
+
+            $data = $document->getDocumentToDashboard();
+
             $this->view('template/Header');
             $this->view('template/Sidebar');
-            $this->view('Dashboard');
+            $this->view('Dashboard', $data);
             $this->view('template/Footer');
         }else{
-
             $dashboard = $this->utils('DashboardAdmin');
-
             $data['data'] = $dashboard->getCountDocumentYears();
-
             $this->view('template/Header');
             $this->view('template/Sidebar');
             $this->view('DashboardKasi', $data);

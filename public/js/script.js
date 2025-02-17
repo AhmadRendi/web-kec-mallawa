@@ -107,10 +107,10 @@ $(function () {
             }
         });
     });
-    // Event listener untuk modal yang ditutup
-    $('#failedUpload').on('hidden.bs.modal', function () {
-        location.reload(); // Refresh halaman
-    });
+    // // Event listener untuk modal yang ditutup
+    // $('#failedUpload').on('hidden.bs.modal', function () {
+    //     location.reload(); // Refresh halaman
+    // });
 
     $('#successUpload').on('hidden.bs.modal', function () {
         location.reload(); // Refresh halaman

@@ -1,11 +1,11 @@
 <div class="main-content">
     <div class="header mb-4 d-flex justify-content-between align-items-center">
         <h4 class="m-0">Kantor Kecamatan Mallawa</h4>
-            <div class="d-flex align-items-center">
-                <span class="me-2">Ikhwan Taufik</span>
-                <span class="text-muted small">Administrator</span>
-                <img src="https://tse3.mm.bing.net/th?id=OIP.AMUdcdnCeqU2buj3WLaR-QHaHa&pid=Api&P=0&h=220" 
-                    class="rounded-circle ms-2" alt="Profile" style="width: 40px; height: 40px;">
+        <div class="d-flex align-items-center">
+                <span class="me-2"><?= $_SESSION['name_user']?></span>
+                <span class="text-muted small"><?= $_SESSION['position']?></span>
+                <img src="<?= BASEURL;?>/img/asset/<?= $_SESSION['picture']?>" 
+                class="rounded-circle ms-2" alt="Profile" style="width: 40px; height: 40px;">
             </div>
     </div>
     <div class="container-fluid">

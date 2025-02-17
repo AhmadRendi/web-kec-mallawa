@@ -20,6 +20,10 @@ class Login extends Controller{
 
             $dataUser = $user->login($data);
 
+            $_SESSION['picture'] = $dataUser['picture'];
+            $_SESSION['name_user'] = $dataUser['name_user'];
+            $_SESSION['position'] = $dataUser['position'];
+
             if($dataUser['role'] == 'ADMIN'){
                 $_SESSION['user_role'] = 'ADMIN';
                 $_SESSION['user_id'] = $dataUser['id_user'];
@@ -27,7 +31,7 @@ class Login extends Controller{
                 $_SESSION['user_role'] = 'KASI';
                 $_SESSION['user_id'] = $dataUser['id_user'];
             }
-            echo json_encode(['status' => 'success']);
+            echo json_encode(['status' => 'success',  'data' => $_SESSION['user_id']]);
         }catch(Exception $e){
             echo json_encode(['status' => 'error', 'message' => $e->getMessage()]);
         }

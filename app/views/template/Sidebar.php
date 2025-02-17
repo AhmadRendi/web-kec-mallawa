@@ -1,7 +1,3 @@
-<?php
-$userRole = $_SESSION['user_role'];
-?>
-
 <div class="sidebar">
     <div class="p-3">
         <a href="<?= BASEURL ?>/logout" class="text-white text-decoration-none">
@@ -16,7 +12,7 @@ $userRole = $_SESSION['user_role'];
             </a>
         </li>
 
-        <?php if ($userRole === 'ADMIN'): ?>
+        <?php if ($_SESSION['user_role'] === 'ADMIN'): ?>
             <!-- Admin Menu Items -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL ?>/Pengarsipan">
@@ -30,7 +26,7 @@ $userRole = $_SESSION['user_role'];
             </li>
         <?php endif; ?>
 
-        <?php if ($userRole === 'KASI'): ?>
+        <?php if ($_SESSION['user_role'] === 'KASI'): ?>
             <!-- Super Admin Menu Items -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= BASEURL ?>/Verification">

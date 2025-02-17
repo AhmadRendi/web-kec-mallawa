@@ -67,7 +67,7 @@ class DocumentUtil {
         try{
             $filename = $this->uploadImage($file);
 
-            $data['status'] = false;
+            $data['status'] = 0;
             $data['dokumen'] = $filename;
 
             $this->modelDocument->addDocument($data);
@@ -103,6 +103,47 @@ class DocumentUtil {
     public function updateData($data){
         try{
             
+        }catch(Exception $e){
+            throw new Exception($e->getMessage());
+        }
+    }
+
+    public function getDocumentToDashboard(){
+        try{
+            // $date = new Date();
+
+            // Mendapatkan tanggal hari ini, bulan ini, dan tahun ini
+            $today = date('Y-m-d');
+            $firstDayOfMonth = date('Y-m-01');
+            $firstDayOfYear = date('Y-01-01');
+
+            $allData = $this->modelDocument->getAllData();
+
+            $totalDocument = count($allData);
+            $todayDocuments = 0;
+            $monthDocuments = 0;
+            $yearDocuments = 0;
+
+
+            foreach($allData as $data){
+                $documentDate = $data['date'];
+                if ($documentDate == $today) {
+                    $todayDocuments++;
+                }
+                if (strtotime($documentDate) >= strtotime($firstDayOfMonth)) {
+                    $monthDocuments++;
+                }
+                if (strtotime($documentDate) >= strtotime($firstDayOfYear)) {
+                    $yearDocuments++;
+                }
+            }
+            
+            return [
+                'totalDocument' => $totalDocument,
+                'todayDocuments' => $todayDocuments,
+                'monthDocuments' => $monthDocuments,
+                'yearDocuments' => $yearDocuments
+            ];
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }

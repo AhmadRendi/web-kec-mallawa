@@ -7,7 +7,7 @@ class UserUtils{
     public function __construct($model)
     {
         $this->modelUser = $model;
-    }   
+    }
 
     private function validate($data){
         $errors = [];
@@ -103,6 +103,7 @@ class UserUtils{
             }else{
                 throw new Exception('Username is not found');
             }
+            return $user;
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -122,18 +123,11 @@ class UserUtils{
         $fileSize = $file['size'];
         $fileError = $file['error'];
         $fileTmp = $file['tmp_name'];
-        $fileName = $file['name'];
-        $fileSize = $file['size'];
-        $fileError = $file['error'];
-        $fileTmp = $file['tmp_name'];
 
-        $fileExt = explode('.', $fileName);
-        $fileActualExt = strtolower(end($fileExt));
         $fileExt = explode('.', $fileName);
         $fileActualExt = strtolower(end($fileExt));
     
         // Tentukan folder tujuan
-        // $folderDestination =  '/opt/lampp/htdocs/web-ic/public/img/asset/';
         $folderDestination =  '../public/img/asset/';
 
         if(!is_dir($folderDestination)){
@@ -163,9 +157,8 @@ class UserUtils{
     
                     // Pindahkan file ke direktori tujuan
                     if (move_uploaded_file($fileTmp, $fileDestination)) {
-                        return $fileNameNew; // Kembalikan nama file baru
+                        return $fileNameNew;
                     } else {
-                        // throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
                         throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
                     }
                 } else {
@@ -174,47 +167,9 @@ class UserUtils{
             } else {
                 throw new Exception('There was an error uploading your file');
             }
-        } else   {
+        } else {
             throw new Exception('You cannot upload files of this type');
         }
-        // $directory = '../public/img/asset/';
-
-        // var_dump($file);
-
-        // if(!is_dir($directory)){
-        //     throw new Exception('Directory is not found ' . $folderDestination);
-        // }
-
-        // $namaFile = $file['name'];
-        // $ukuranFile = $file['size'];
-        // $error = $file['error'];
-        // $tempName = $file['tmp_name'];
-      
-        
-        // $ekstensiGambarValid = ['jpg', 'jpeg', 'png'];
-        // $ekstensiGambar = explode('.', $namaFile);
-        // $ekstensiGambar = strtolower(end($ekstensiGambar));
-        
-        // if(!in_array($ekstensiGambar, $ekstensiGambarValid)){
-        //     return false;
-        // }
-
-        // $namaFileBaru = uniqid();
-        // $namaFileBaru .= '.';
-        // $namaFileBaru .= $ekstensiGambar;
-        // $namaFileBaru = $directory . $namaFileBaru;
-      
-        // $error =  $file['error'];
-
-        // $move = move_uploaded_file($tempName, $namaFileBaru);
-        // if($move){
-        //     return $namaFileBaru;
-        // }else{
-        //     var_dump($tempName);
-        //     return $tempName;
-        // }
-        // return $namaFileBaru;
-        // return $tempName;
     }
 
     public function updateUser($data, $file){

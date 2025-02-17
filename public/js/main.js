@@ -120,7 +120,6 @@ $( function () {
 
     // Login User
         $('#login_form').on('submit', function(e) {
-
             e.preventDefault();
             let data = $(this).serialize();
 
@@ -133,7 +132,6 @@ $( function () {
                 username: username,
                 password: password
             };
-            // console.log(dataToSend);
 
             $.ajax({
                 url: 'http://localhost/web-ic/public/Login/session',
@@ -158,16 +156,11 @@ $( function () {
         });
 
 
-        // update user
+    // update user
     $('#updateProfile').on('submit', function(e) {
         e.preventDefault();
-        let data = new FormData(this); // Menggunakan FormData untuk menangani file upload jika ada
-        $('#errorUpdateProfile').modal('hide'); // Menyembunyikan modal kesalahan sebelumnya
-
-        // console.log(data);
-        for (let [key, value] of data.entries()) {
-            console.log(`${key}:`, value);
-        }
+        let data = new FormData(this); 
+        $('#errorUpdateProfile').modal('hide');
     
         $.ajax({
             url: 'http://localhost/web-ic/public/User/editProfile',
@@ -177,23 +170,30 @@ $( function () {
             contentType: false, // Penting untuk FormData
             // dataType: 'json',
             success: function(response) {
-                console.log(response);
                 if (response.status === 'success') {
-                    // Tindakan jika berhasil
-                    $('#successUpdate').modal('show');
+                    var myModal = new bootstrap.Modal(document.getElementById('successUpdate'));
+                    myModal.show();
                 } else {
-                    // Tindakan jika ada kesalahan dari server
-                    $('#errorUpdateProfile').text(response.message || 'Terjadi kesalahan saat memperbarui profil.');
-                    $('#errorUpdateProfile').modal('show');
+                    $('#error-message').text(response.message || 'Terjadi kesalahan saat memperbarui profil.');
+                    var myModal = new bootstrap.Modal(document.getElementById('errorUpdateProfile'));
+                    myModal.show();
                 }
             },
             error: function(jqXHR, textStatus, errorThrown) {
-                // Menampilkan pesan error jika terjadi kesalahan
-                $('#errorUpdateProfile').text('Terjadi kesalahan: ' + errorThrown);
-                $('#errorUpdateProfile').modal('show');
+                $('#error-message').text('Terjadi kesalahan: ' + errorThrown);
+                var myModal = new bootstrap.Modal(document.getElementById('errorUpdateProfile'));
+                myModal.show();
             }
         });
     });
-    
+    // Event listener untuk reload halaman setelah modal ditutup
+    var successModal = document.getElementById('successUpdate');
+    successModal.addEventListener('hidden.bs.modal', function () {
+        location.reload(); // Reload halaman
+    });
 
+    var errorModal = document.getElementById('errorUpdateProfile');
+    errorModal.addEventListener('hidden.bs.modal', function () {
+        location.reload(); // Reload halaman
+    });
 });
