@@ -2,80 +2,64 @@ $( function () {
 
     $('.tampilModalUpdate').on('click', function () {
         const id = $(this).data('id');
-        console.log(id);
+        // console.log(id);
         $.ajax({
             url: 'http://localhost/web-ic/public/Pengarsipan/getDocument',
-            data: {id : id},
+            data: {id: id},
             method: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             success: function (data) {
-                console.log(data.jenis);
-
+                console.log(data);
+                $('#editId').val(data.id_document);
                 $('#editNomorSurat').val(data.nmr_surat);
                 $('#editTanggal').val(data.date);
-                $('#editJenis').val(data.jenis);
+                $('#editJenis').val(data.jenis).change(); // Memicu event change
                 $('#editKategori').val(data.kategory);
                 $('#editPengirim').val(data.pengirim);
                 $('#editPenerima').val(data.penerima);
                 $('#editDokumen').val(data.document);
-
-                // $('#editModal').modal('show');
+    
+                // Tampilkan modal setelah semua nilai di-set
+                $('#editModal').modal('show');
+            }
+        });
+    });
+    
+    // edit Document
+    $('#editForm').on('submit', function(e) {
+        e.preventDefault();
+        let data = new FormData(this);
+    
+        for (let [key, value] of data.entries()) {
+            console.log(`${key}:`, value);
+        }
+    
+        $.ajax({
+            url: 'http://localhost/web-ic/public/Pengarsipan/updateData',
+            data: data,
+            method: 'post',
+            processData: false, // Penting untuk FormData
+            contentType: false,
+            success: function(data) {
+                console.log(data);
+                if (data.status === 'success') {
+                    $('#successEditDocument').modal('show');
+                } else {
+                    $('#failedEditDocument .modal-body').text(data.message);
+                    $('#failedEditDocument').modal('show');
+                }
+            },
+            error: function(jqXHR, textStatus, errorThrown) {
+                $('#failedEditDocument .modal-body').text('Terjadi kesalahan: ' + errorThrown);
+                $('#failedEditDocument').modal('show');
             }
         });
     });
 
-    // $('#editForm').on('submit', function(e) {
-
-    //     e.preventDefault();
-
-    //     $.ajax({
-    //         type: 'POST',
-    //         url: $(this).attr('action'),
-    //         data: new FormData(this),
-    //         contentType: false,
-    //         processData: false,
-    //         success: function(response) {
-    //             console.log(response);
-    //             $('#editModal').modal('hide');
-    //         },
-    //         error: function(xhr, status, error) {
-    //             console.error('Terjadi kesalahan:', error);
-    //         }
-    //     });
-    // });
-
-    // edit Document
-    $('#editForms').on('submit', function(e){
-            e.preventDefault();
-            let data = new FormData(this);
-    
-            for (let [key, value] of data.entries()) {
-                console.log(`${key}:`, value);
-            }
-    
-            $.ajax({
-                url: 'http://localhost/web-ic/public/Pengarsipan/updateData',
-                data: data,
-                method: 'post',
-                processData: false, // Penting untuk FormData
-                contentType: false,
-                // dataType: 'json',
-                success: function(data) {
-                    // Pastikan data yang diterima adalah objek JSON
-                    console.log(data);
-                    if (data.status === 'success') {
-                        $('#successUpload').modal('show');
-                    } else {
-                        $('#failedUpload .modal-body').text(data.message);
-                        $('#failedUpload').modal('show');
-                    }
-                },
-                error: function(jqXHR, textStatus, errorThrown) {
-                    $('#failedUpload .modal-body').text('Terjadi kesalahan: ' + errorThrown);
-                    $('#failedUpload').modal('show');
-                }
-            });
+    $(document).on('click', '#reloadPage', function() {
+        location.reload(); // Reload halaman
     });
+
 
     // Download Document
     let idDocumentForDownload;

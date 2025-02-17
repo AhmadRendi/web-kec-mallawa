@@ -109,44 +109,50 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form id="editForms" action="<?= BASEURL; ?>/Pengarsipan/updateData" method="POST">
+                <form id="editForm" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" id="editId">
                     <div class="mb-3">
                         <label for="editNomorSurat" class="form-label">Nomor Surat</label>
-                        <input type="text" class="form-control" id="editNomorSurat" name="nomor_surat" readonly>
+                        <input type="text" class="form-control border border-dark" id="editNomorSurat" name="nomor_surat" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editTanggal" class="form-label">Tanggal</label>
-                        <input type="date" class="form-control" id="editTanggal" name="tanggal" required>
+                        <input type="date" class="form-control border border-dark" id="editTanggal" name="tanggal" readonly>
                     </div>
                     <div class="mb-3">
                         <label for="editJenis" class="form-label">Jenis</label>
-                        <select class="form-select" id="editJenis" name="jenis" required>
-                            <option value="Masuk">Masuk</option>
-                            <option value="Keluar">Keluar</option>
+                        <select class="form-select border border-dark" id="editJenis" name="jenis" required>
+                            <option value="masuk">Masuk</option>
+                            <option value="keluar">Keluar</option>
                         </select>
                     </div>
                     <div class="mb-3">
                         <label for="editKategori" class="form-label">Kategori</label>
-                        <input type="text" class="form-control" id="editKategori" name="kategori" required>
+                        <select class="form-select border border-dark" id="editKategori" name="kategori" required>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="">Pilih Kategori</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="umum">Umum</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="penting">Penting</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="rahasia">Rahasia</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="editPengirim" class="form-label">Pengirim</label>
-                        <input type="text" class="form-control" id="editPengirim" name="pengirim" required>
+                        <input type="text" class="form-control border border-dark" id="editPengirim" name="pengirim" required>
                     </div>
                     <div class="mb-3">
                         <label for="editPenerima" class="form-label">Penerima</label>
-                        <input type="text" class="form-control" id="editPenerima" name="penerima" required>
+                        <input type="text" class="form-control border border-dark" id="editPenerima" name="penerima" required>
                     </div>
                     <div class="mb-3">
                         <label for="editDokumen" class="form-label">Dokumen</label>
-                        <input type="file" class="form-control" id="editDokumen" name="dokumen" required>
+                        <input type="file" class="form-control border border-dark" id="editDokumen" name="dokumen" required>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
-                        <button type="submit" class="btn btn-primary"  data-bs-dismiss="modal">Submit</button>
+                        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">Submit</button> <!-- Hapus data-bs-dismiss -->
                     </div>
                 </form>
+
             </div>
         </div>
     </div>
@@ -190,3 +196,38 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="successEditDocument" tabindex="-1" aria-labelledby="successUploadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successUploadLabel">Sukses</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Dokumen berhasil diperbarui!
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="reloadPage">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="failedEditDocument" tabindex="-1" aria-labelledby="successUploadLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="successUploadLabel">Gagal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <!-- Dokumen berhasil diperbarui! -->
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" id="reloadPage">OK</button>
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -38,8 +38,21 @@ class Pengarsipan extends Controller{
     }
 
     public function updateData(){
-        $data = $_POST;
-        echo "Update Data";
+        header('Content-Type: application/json'); // Mengatur header untuk JSON
+        try{
+            $data = $_POST;
+            $file = $_FILES['dokumen'];
+
+            $model = $this->model('Documents');
+            $document = $this->util('DocumentUtil', $model);
+
+            $result = $document->updateData($data, $file);
+
+            echo json_encode(['status' => $result]);
+        }catch(Exception $e){
+            echo json_encode(['status' => 'failed' , 'message' => $e->getMessage()]);
+        }
+        
     }
 
     public function download(){

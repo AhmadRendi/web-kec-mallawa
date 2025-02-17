@@ -100,9 +100,14 @@ class DocumentUtil {
         }
     }
 
-    public function updateData($data){
+    public function updateData($data, $file){
         try{
+            $filename = $this->uploadImage($file);
+            $data['dokumen'] = $filename;
             
+            $this->modelDocument->update($data);
+
+            return "success";
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }
@@ -110,9 +115,6 @@ class DocumentUtil {
 
     public function getDocumentToDashboard(){
         try{
-            // $date = new Date();
-
-            // Mendapatkan tanggal hari ini, bulan ini, dan tahun ini
             $today = date('Y-m-d');
             $firstDayOfMonth = date('Y-m-01');
             $firstDayOfYear = date('Y-01-01');
@@ -124,9 +126,10 @@ class DocumentUtil {
             $monthDocuments = 0;
             $yearDocuments = 0;
 
-
             foreach($allData as $data){
-                $documentDate = $data['date'];
+                // Mengubah format tanggal untuk membandingkan hanya tanggal
+                $documentDate = date('Y-m-d', strtotime($data['date']));
+                
                 if ($documentDate == $today) {
                     $todayDocuments++;
                 }
