@@ -2,8 +2,10 @@
 
 class DashboardAdmin {
 
-    public function __construct(){
-        $this->getData();
+    private $modelDocument;
+
+    public function __construct($model){
+        $this->modelDocument = $model;
     }
 
     public function getData(){
@@ -494,6 +496,10 @@ class DashboardAdmin {
                 'ket' => 'Sudah Diterima'
             ]
         ];
+
+        // $data['data'] = $this->modelDocument->getAllData();
+        // return $data['data'];
+        // return $this->modelDocument->getAllData();
     }
 
     function processSuratMasukData($data) {
@@ -510,18 +516,18 @@ class DashboardAdmin {
         $yearlyCounts = [];
 
         foreach ($data as $surat) {
-            $year = date('Y', strtotime($surat['tanggal']));
+            $year = date('Y', strtotime($surat['date']));
     
             if ($year >= $startYear && $year <= $endYear) {
                 if (!isset($yearlyCounts[$year])) {
                     $yearlyCounts[$year] = [];
                 }
     
-                if (!isset($yearlyCounts[$year][$surat['kategori']])) {
-                    $yearlyCounts[$year][$surat['kategori']] = 0;
+                if (!isset($yearlyCounts[$year][$surat['kategory']])) {
+                    $yearlyCounts[$year][$surat['kategory']] = 0;
                 }
     
-                $yearlyCounts[$year][$surat['kategori']]++;
+                $yearlyCounts[$year][$surat['kategory']]++;
             }
         }
 
@@ -529,7 +535,7 @@ class DashboardAdmin {
             $result['labels'][] = $year;
         }
     
-        $categories = array_unique(array_column($data, 'kategori'));
+        $categories = array_unique(array_column($data, 'kategory'));
 
         $colors = [
             '#FF5733', '#33FF57', '#3357FF', '#F3FF33', '#FF33F6',
@@ -564,7 +570,8 @@ class DashboardAdmin {
 
     public function getCountDocumentYears(){
 
-        $data = $this->getData();
+        // $data = $this->getData();
+        $data = $this->modelDocument->getAllData();
 
         $currentYear = date('Y');
         $startYear = $currentYear - 4;
@@ -574,7 +581,7 @@ class DashboardAdmin {
 
 
         foreach ($data as $item) {
-            $year = date('Y', strtotime($item['tanggal']));
+            $year = date('Y', strtotime($item['date']));
 
             if ($year >= $startYear && $year <= $endYear) {
                 if (!isset($yearlyCounts[$year])) {
@@ -598,7 +605,8 @@ class DashboardAdmin {
     }
 
     public function get(){
-        $data = $this->getData();
+        $data = $this->modelDocument->getAllData();
+        // $data = $this->getData();
         $processedData = $this->processSuratMasukData($data);
         return $processedData;
     }

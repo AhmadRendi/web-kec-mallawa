@@ -6,6 +6,9 @@ session_start();
 class Document extends Controller{
 
     public function index(){
+        if($_SESSION['user_role'] == NULL){
+            header('Location: ' . BASEURL . '/Login');
+        }
         $this->view('template/Header');
         $this->view('template/Sidebar');
         $this->view('Document');

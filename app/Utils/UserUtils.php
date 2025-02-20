@@ -76,9 +76,30 @@ class UserUtils{
         return $data;
     }
 
+            // validasi untuk huruf saja
+            private function validateAlphabet($data) {
+                if (!preg_match('/^[a-zA-Z\s]+$/', $data)) {
+                    throw new Exception('tidak boleh mengandung angka atau karakter lain.');
+                }
+            } 
+
+            private function validateAlphabetForName($data) {
+                if (!preg_match('/^[a-zA-Z\s]+$/', $data)) {
+                    throw new Exception('nama tidak boleh mengandung angka atau karakter lain.');
+                }
+            } 
+    
+            // validasi untuk simbol
+            private function validateSymbol($data){
+                if (!preg_match('/^[a-zA-Z0-9\s]+$/', $data)) {
+                    throw new Exception('Input tidak boleh mengandung simbol');
+                }
+            }
+
     // function utama registrasi user
     public function addUser($data){
         try{
+            $this->validateAlphabetForName($data['name_user']);
             $data = $this->setDefault($data);
             $this->validates($data);
         }catch(Exception $e){
@@ -146,36 +167,43 @@ class UserUtils{
                     // Validasi apakah direktori tujuan ada, jika tidak ada, buat direktori
                     if (!is_dir($folderDestination)) {
                         if (!mkdir($folderDestination, 0755, true)) {
-                            throw new Exception('Cannot create directory: ' . $folderDestination);
+                            throw new Exception('Tidak Dapat Membuat Direktori ' . $folderDestination);
                         }
                     }
     
                     // Debug: Periksa apakah file temporary ada
                     if (!file_exists($fileTmp)) {
-                        throw new Exception('Temporary file does not exist: ' . $fileTmp);
+                        throw new Exception('Temporeri Tidak Ditemukan' . $fileTmp);
                     }
     
                     // Pindahkan file ke direktori tujuan
                     if (move_uploaded_file($fileTmp, $fileDestination)) {
                         return $fileNameNew;
                     } else {
-                        throw new Exception('Failed to move uploaded file. Check permissions and path. Destination: ' . $fileDestination);
+                        throw new Exception('Gagal mengupload file');
                     }
                 } else {
-                    throw new Exception('Your file is too big');
+                    throw new Exception('Ukuran file terlalu besar');
                 }
             } else {
-                throw new Exception('There was an error uploading your file');
+                throw new Exception('Error saat mengupload file');
             }
         } else {
-            throw new Exception('You cannot upload files of this type');
+            throw new Exception('Ekstensi file tidak diizinkan');
         }
     }
+
+
+
+        
 
     public function updateUser($data, $file){
         try{
             $filename = $this->uploadImage($file);
             $data['id'] = $_SESSION['user_id'];
+            $this->validateAlphabet($data['name_user']);
+            $this->validateSymbol($data['address']);
+            $this->validateSymbol($data['position']);
             $this->modelUser->update($data, $filename);
             return "success";
         }catch(Exception $e){

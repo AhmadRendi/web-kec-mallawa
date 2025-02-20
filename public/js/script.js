@@ -12,7 +12,7 @@ $(function () {
             url: 'http://localhost/web-ic/public/Verification/verification',
             data: {id : idDocumentForVerification},
             method: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             success: function (data) {
                 console.log(data);
             }
@@ -28,12 +28,13 @@ $(function () {
     });
 
     $('#cancelVerification').on('click', function() {
-        console.log(idDocumentForCancelVerification);
+        // console.log("masuk ke sini");
+        // console.log(idDocumentForCancelVerification);
         $.ajax({
             url: 'http://localhost/web-ic/public/Verification/cancelVariation',
-            data: {id : idDocumentForVerification},
+            data: {id : idDocumentForCancelVerification},
             method: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             success: function (data) {
                 console.log(data);
             }
@@ -50,18 +51,19 @@ $(function () {
 
     // Add User
     $('#form_registration').on('submit', function(e) {
-        e.preventDefault();
+        e.preventDefault(); 
         let data = $(this).serialize();
-        $('#errorRegistration').modal('hide');
+        $('#errorRegistration').modal('hide'); 
     
         $.ajax({
             url: 'http://localhost/web-ic/public/Registration/addUser',
-            data: data,
-            method: 'post',
+            data: data, 
+            method: 'post', 
             dataType: 'json',
             success: function(data, textStatus, jqXHR) {
                 console.log(data);
                 if (data.status === 'success') {
+                    $('#form_registration')[0].reset(); 
                     $('#successRegistration').modal('show');
                 } else {
                     $('#errorRegistration .modal-body').text(data.message);
@@ -74,6 +76,7 @@ $(function () {
             }
         });
     });
+    
 
     // upload Document
     $('#uploadDocument').on('submit', function(e){
@@ -88,11 +91,10 @@ $(function () {
             url: 'http://localhost/web-ic/public/Document/addDocument',
             data: data,
             method: 'post',
-            processData: false, // Penting untuk FormData
+            processData: false,
             contentType: false,
             // dataType: 'json',
             success: function(data) {
-                // Pastikan data yang diterima adalah objek JSON
                 console.log(data);
                 if (data.status === 'success') {
                     $('#successUpload').modal('show');
@@ -107,10 +109,6 @@ $(function () {
             }
         });
     });
-    // // Event listener untuk modal yang ditutup
-    // $('#failedUpload').on('hidden.bs.modal', function () {
-    //     location.reload(); // Refresh halaman
-    // });
 
     $('#successUpload').on('hidden.bs.modal', function () {
         location.reload(); // Refresh halaman
@@ -127,6 +125,7 @@ document.addEventListener('DOMContentLoaded', function() {
         method: 'get',
         dataType: 'json',
         success: function (data) {
+            console.log("hello");
             console.log(data);
             const config = {
                 type: 'line',

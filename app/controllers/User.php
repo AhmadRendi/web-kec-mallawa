@@ -7,6 +7,9 @@ class User extends Controller{
 
     public function index(){
         try{
+            if($_SESSION['user_role'] == NULL){
+                header('Location: ' . BASEURL . '/Login');
+            }
             $model = $this->model('Users');
             $user = $this->util('UserUtils', $model);
 

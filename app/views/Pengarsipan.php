@@ -78,15 +78,16 @@
                                             <a href="" class="icon-button bg-success-custom text-black"
                                             data-bs-toggle="modal" data-bs-target="#downloadModal" data-id="<?= $doc['id_document']; ?>">
                                             <i class="bi bi-download"></i>
+                                                <?php if ($doc['status'] == 'Menunggu Verifikasi'): ?>
+                                                    <a href="" class="icon-button bg-warning-custom text-white tampilModalUpdate"
+                                                        data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $doc['id_document']; ?>">
+                                                        <i class="bi bi-check-lg"></i>
+                                                    </a>
 
-                                            <a href="" class="icon-button bg-warning-custom text-white tampilModalUpdate"
-                                                data-bs-toggle="modal" data-bs-target="#editModal" data-id="<?= $doc['id_document']; ?>">
-                                                <i class="bi bi-check-lg"></i>
-                                            </a>
-
-                                            <a href="" class="icon-button bg-danger-custom text-white"
-                                                data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $doc['id_document']; ?>">
-                                                <i class="bi bi-x-lg"></i>
+                                                    <a href="" class="icon-button bg-danger-custom text-white"
+                                                        data-bs-toggle="modal" data-bs-target="#deleteModal" data-id="<?= $doc['id_document']; ?>">
+                                                        <i class="bi bi-x-lg"></i>
+                                                <?php endif; ?>
                                             </a>
                                         </div>
                                     </div>

@@ -90,4 +90,28 @@ class Documents {
         }
     }
 
+    public function updateStatus($id, $status){
+        try{
+            $query = "UPDATE $this->table SET status = ? WHERE id_document = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $status);
+            $this->db->bind(2, $id);
+            $this->db->execute();
+            return $id;
+        }catch(PDOException $e){
+            throw new PDOException($e->getMessage());
+        }
+    }
+
+    public function getDocumentById($id){
+        try{
+            $query = "SELECT document FROM $this->table WHERE id_document = ?";
+            $this->db->query($query);
+            $this->db->bind(1, $id);
+            return $this->db->single();
+        }catch(PDOException $e){
+            throw new PDOException($e->getMessage());
+        }
+    }
+
 }

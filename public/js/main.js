@@ -29,11 +29,6 @@ $( function () {
     $('#editForm').on('submit', function(e) {
         e.preventDefault();
         let data = new FormData(this);
-    
-        for (let [key, value] of data.entries()) {
-            console.log(`${key}:`, value);
-        }
-    
         $.ajax({
             url: 'http://localhost/web-ic/public/Pengarsipan/updateData',
             data: data,
@@ -61,8 +56,12 @@ $( function () {
     });
 
 
-    // Download Document
+    // // Download Document
     let idDocumentForDownload;
+
+    $('[data-bs-target="#downloadModal"]').on('click', function() {
+        idDocumentForDownload = $(this).data('id');
+    });
 
     $('[data-bs-target="#downloadModal"]').on('click', function() {
         idDocumentForDownload = $(this).data('id');
@@ -73,9 +72,17 @@ $( function () {
             url: 'http://localhost/web-ic/public/Pengarsipan/download',
             data: {id : idDocumentForDownload},
             method: 'post',
-            // dataType: 'json',
+            dataType: 'json',
             success: function (data) {
                 console.log(data);
+                if (data.status === 'success') {
+                    window.open(data.file, '_blank');
+                } else {
+                    alert('Gagal mengunduh file: ' + (data.message || 'Terjadi kesalahan'));
+                }
+            },
+            error: function() {
+                alert('Terjadi kesalahan saat menghubungi server');
             }
         });
         $('#downloadModal').modal('hide');
@@ -88,7 +95,7 @@ $( function () {
         idDocumentForDelete = $(this).data('id');
     });
 
-    $('#deleteModal').on('click', function() {
+    $('#confirmDelete').on('click', function() {
         $.ajax({
             url: 'http://localhost/web-ic/public/Pengarsipan/delete',
             data: {id : idDocumentForDelete},
@@ -98,7 +105,7 @@ $( function () {
                 console.log(data);
             }
         });
-        $('#deleteModal').modal('hide');
+        $('#confirmDelete').modal('hide');
         location.reload();
     });
 

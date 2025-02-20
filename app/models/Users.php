@@ -28,8 +28,6 @@ class Users {
             $this->db->bind(8, $data['picture']);
 
             $this->db->execute();
-
-            return $this->db->rowCount();
         }catch(PDOException $e){
             throw new PDOException($e->getMessage());
         }

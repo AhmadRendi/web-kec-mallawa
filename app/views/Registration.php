@@ -45,7 +45,7 @@
                             <button type="submit" class="btn btn-primary">Daftar</button>
                         </div>
                         <div>
-                            <a href="<?= BASEURL; ?>" class="btn btn-danger">Batal</a>
+                            <a href="<?= BASEURL; ?>" class="btn btn-danger">Kembali</a>
                         </div>
                 </div>
                 <div id="error-message" class="alert alert-danger mt-3" style="display: none;"></div>

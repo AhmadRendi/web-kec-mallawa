@@ -39,12 +39,12 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['nomorSurat']); ?>
+                                        <?php echo htmlspecialchars($doc['nmr_surat']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo date('Y-m-d', strtotime($doc['tanggal'])); ?>
+                                        <?php echo date('Y-m-d', strtotime($doc['date'])); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -54,7 +54,7 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['kategori']); ?>
+                                        <?php echo htmlspecialchars($doc['kategory']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -69,12 +69,12 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['dokumen']); ?>
+                                        <?php echo htmlspecialchars($doc['document']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['ket']); ?>
+                                        <?php echo htmlspecialchars($doc['status']); ?>
                                     </h6>
                                 </td>
                             </tr>

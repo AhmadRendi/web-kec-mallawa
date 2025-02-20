@@ -5,6 +5,9 @@ session_start();
 class Pengarsipan extends Controller{
 
     public function index(){
+        if($_SESSION['user_role'] == NULL){
+            header('Location: ' . BASEURL . '/Login');
+        }
         $model = $this->model('Documents');
         $document = $this->util('DocumentUtil', $model);
 
@@ -56,9 +59,72 @@ class Pengarsipan extends Controller{
     }
 
     public function download(){
-        $idDocument = $_POST['id'];
-        var_dump($idDocument);
-        echo "Download";
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            try {
+                $idDocument = $_POST['id'];
+
+                // $_SESSION['id_document'] = $_POST['id'];
+        
+                $model = $this->model('Documents');
+                $document = $this->util('DocumentUtil', $model);
+        
+                $result = $document->download($idDocument);
+    
+                if ($result['status'] !== "success") {
+                    throw new Exception("Gagal mengunduh file");
+                }
+        
+                echo json_encode([
+                    'status' => $result['status'], 
+                    'file' => $result['path']
+                    // 'filename' => $result['filename'] // Tambahkan nama file
+                ]);
+                exit;
+            } catch(Exception $e) {
+                echo json_encode(['status' => 'failed' , 'message' => $e->getMessage()]);
+            }
+        } 
+        // elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+        //     try {
+        //         // $idDocument = $_GET['id'];
+
+        //         $idDocument = $_SESSION['id_document'];
+
+        //         $model = $this->model('Documents');
+        //         $document = $this->util('DocumentUtil', $model);
+    
+        //         $result = $document->download($idDocument);
+                
+        //         // Set headers for file download
+        //         // header('Content-Type: application/octet-stream');
+        //         // header('Content-Disposition: attachment; filename="' . $result['filename'] . '"');
+        //         // header('Content-Length: ' . filesize($result['path']));
+                
+        //         // readfile($result['path']);
+        //         // exit;
+
+        //         var_dump($result);
+
+        //         header('Content-Description: File Transfer');
+        //         header('Content-Type: application/octet-stream');
+        //         header('Content-Disposition: attachment; filename="' . $result['filename'] . '"');
+        //         header('Expires: 0');
+        //         header('Cache-Control: must-revalidate');
+        //         header('Pragma: public');
+        //         header('Content-Length: ' . filesize($result['path']));
+                
+        //         // Bersihkan output buffer
+        //         ob_clean();
+        //         flush();
+                
+        //         // Baca file dan kirim ke output
+        //         readfile($result['path']);
+        //         exit;
+        //     } catch(Exception $e) {
+        //         echo json_encode(['status' => 'failed' , 'message' => $e->getMessage()]);
+        //         // echo "Gagal mengunduh file: " . $e->getMessage();
+        //     }
+        // }
     }
 
     public function delete(){
@@ -73,15 +139,6 @@ class Pengarsipan extends Controller{
         }catch(Exception $e){
             echo json_encode(['status' => 'failed' , 'message' => $e->getMessage()]);
         }
-    }
-
-    public function search(){
-        $data['title'] = 'Pengarsipan Dokumen';
-        $data['documents'] = $this->model('Document_model')->searchDocuments($_POST['keyword']);
-        $this->view('template/header', $data);
-        $this->view('template/sidebar');
-        $this->view('pengarsipan/index', $data);
-        $this->view('template/footer');
     }
 
 }

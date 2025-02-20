@@ -6,11 +6,13 @@
     </div>
     <ul class="nav flex-column">
         <!-- Dashboard - Visible to all roles -->
-        <li class="nav-item">
-            <a class="nav-link" href="<?= BASEURL ?>/Dashboard">
-                <i class="bi bi-grid me-2"></i> Dashboard
-            </a>
-        </li>
+        <?php if($_SESSION['user_role'] === 'ADMIN' || $_SESSION['user_role'] === 'KASI'): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL ?>/Dashboard">
+                    <i class="bi bi-grid me-2"></i> Dashboard
+                </a>
+            </li>
+        <?php endif; ?>
 
         <?php if ($_SESSION['user_role'] === 'ADMIN'): ?>
             <!-- Admin Menu Items -->
@@ -41,10 +43,12 @@
         <?php endif; ?>
 
         <!-- Profile - Visible to all roles -->
-        <li class="nav-item">
-            <a class="nav-link" href="<?= BASEURL ?>/User">
-                <i class="bi bi-person me-2"></i> Profil
-            </a>
-        </li>
+         <?php if($_SESSION['user_role'] === 'ADMIN' || $_SESSION['user_role'] === 'KASI'): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="<?= BASEURL ?>/User">
+                    <i class="bi bi-person me-2"></i> Profil
+                </a>
+            </li>
+        <?php endif; ?>
     </ul>
 </div>
