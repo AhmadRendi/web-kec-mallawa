@@ -7,9 +7,9 @@
                     <div class="text-center col">
                             <img class="img-logo-login" src="https://mattampapoledesa.maroskab.go.id/assets/files/logo/opensid_logo.png" alt="...">
                     </div>
-                    <div class="text-center col">
+                    <!-- <div class="text-center col">
                         One of three columns
-                    </div>
+                    </div> -->
             </div>
             <div class="container bg-primary">
                 <div class="d-flex justify-content-center align-items-center">
@@ -28,7 +28,7 @@
                                 d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10s-3.516.68-4.168 1.332c-.678.678-.83 1.418-.832 1.664z" />
                         </svg>
                     </span>
-                    <input type="text" class="form-control" name="username" placeholder="Username" aria-label="Username"
+                    <input type="text" class="form-control rounded-pill border border-0" name="username" placeholder="Username" aria-label="Username"
                         aria-describedby="basic-addon1">
                 </div>
                 <div class="input-group">
@@ -39,7 +39,7 @@
                                 d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2m3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2M5 8h6a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V9a1 1 0 0 1 1-1" />
                         </svg>
                     </span>
-                    <input type="password" class="form-control" name="password" placeholder="Password">
+                    <input type="password" class="form-control rounded-pill border border-0" name="password" placeholder="Password">
                 </div>
     
                 <button type="submit" class="login-btn">Masuk</button>
@@ -51,27 +51,6 @@
             </form>
         </div>
     </div>
-
-
-    <!-- Modal untuk sukses registrasi
-<div class="modal fade" id="successLogin" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="successModalLabel">Sukses!</h5>
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                Registrasi Anda berhasil!
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
-            </div>
-        </div>
-    </div>
-</div> -->
 
 <!-- Modal untuk Menampilkan Pesan Kesalahan -->
 <div class="modal fade" id="errorLogin" tabindex="-1" role="dialog" aria-labelledby="errorModalLabel" aria-hidden="true">
