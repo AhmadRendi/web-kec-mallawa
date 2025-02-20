@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-body shadow p-3 bg-body rounded">
                 <div class="d-flex justify-content-between align-items-center mb-4">
-                    <h5 class="card-title">Verifikasi Dokumen</h5>
+                    <h5 class="card-title">Dokumen</h5>
                 </div>  
                 <div class="table-responsive">
                     <table id="data_table" class="display" style="width:100%">
@@ -26,6 +26,7 @@
                                 <th>Pengirim</th>
                                 <th>Penerima</th>
                                 <th>Dokumen</th>
+                                <th>Keterangan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -70,6 +71,11 @@
                                 <td>
                                     <h6>
                                         <?php echo htmlspecialchars($doc['document']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($doc['status']); ?>
                                     </h6>
                                 </td>
                                 <td>
