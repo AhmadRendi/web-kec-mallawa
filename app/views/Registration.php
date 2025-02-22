@@ -32,8 +32,17 @@
                 <div class="form-group">
                     <label for="email" class="col-form-label"
                     style="font-weight: bold; color: black;">Jabatan</label>
-                    <input type="text" class="form-control" id="position" name="position" required>
+                    <input type="text" class="form-control" value="ADMIN" id="position" name="position" readonly>
                 </div>
+                <!-- <div class="mb-3">
+                        <label for="kategori" class="form-label">Kategori</label>
+                        <select class="form-control border border-dark" id="kategori" name="kategori" required>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="">Pilih Kategori</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="umum">Umum</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="penting">Penting</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="rahasia">Rahasia</option>
+                        </select>
+                    </div> -->
                 <div class="form-group">
                     <label for="email" class="col-form-label"
                     style="font-weight: bold; color: black;">Alamat</label>

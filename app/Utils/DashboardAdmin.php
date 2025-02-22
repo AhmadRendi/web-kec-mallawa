@@ -563,7 +563,31 @@ class DashboardAdmin {
         
             $result['datasets'][] = $dataset;
             $colorIndex++;
-        }        
+        }       
+
+            // Menghitung total kemunculan setiap kategori
+        $totalCounts = [];
+        foreach ($yearlyCounts as $year => $categories) {
+            foreach ($categories as $category => $count) {
+                if (!isset($totalCounts[$category])) {
+                    $totalCounts[$category] = 0;
+                }
+                $totalCounts[$category] += $count;
+            }
+        }
+
+        
+        // Menentukan kategori dengan jumlah terbanyak
+        $maxCategory = '';
+        $maxCount = 0;
+        foreach ($totalCounts as $category => $count) {
+            if ($count > $maxCount) {
+                $maxCount = $count;
+                $maxCategory = $category;
+            }
+        }
+
+        $result['maxCount'] = $maxCount + 2;
 
         return $result;
     }

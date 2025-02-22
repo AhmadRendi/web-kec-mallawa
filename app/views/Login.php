@@ -7,9 +7,9 @@
                     <div class="text-center col">
                             <img class="img-logo-login" src="https://mattampapoledesa.maroskab.go.id/assets/files/logo/opensid_logo.png" alt="...">
                     </div>
-                    <!-- <div class="text-center col">
+                    <div class="text-center col">
                         One of three columns
-                    </div> -->
+                    </div>
             </div>
             <div class="container bg-primary">
                 <div class="d-flex justify-content-center align-items-center">

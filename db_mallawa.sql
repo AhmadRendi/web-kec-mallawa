@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Waktu pembuatan: 16 Feb 2025 pada 10.09
+-- Waktu pembuatan: 20 Feb 2025 pada 06.56
 -- Versi server: 10.4.28-MariaDB
 -- Versi PHP: 8.2.4
 
@@ -29,13 +29,14 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `document` (
   `id_document` int(11) NOT NULL,
+  `nmr_surat` varchar(30) NOT NULL,
   `date` date NOT NULL,
   `jenis` varchar(50) NOT NULL,
   `kategory` varchar(50) NOT NULL,
   `pengirim` varchar(50) NOT NULL,
   `penerima` varchar(50) NOT NULL,
   `document` varchar(100) NOT NULL,
-  `status` tinyint(1) NOT NULL
+  `status` varchar(35) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -55,14 +56,6 @@ CREATE TABLE `user` (
   `position` varchar(50) NOT NULL,
   `picture` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`id_user`, `username`, `password`, `name_user`, `email`, `address`, `role`, `position`, `picture`) VALUES
-(1, 'ahmadrendi', '$2y$10$PuOGBJiazZPRjJ9M2LSu/OpCzsMVD2UA4tj20Ux90NieQAnQx0EHO', 'Ahmad Rendi', 'ahmadrendi@gmail.com', 'Makassar', 'ADMIN', 'Administration', 'image.png'),
-(2, 'rendi', '$2y$10$o0YMCkkgTgkI7kgnjjGWLuiU.WTXFKofAlurEnu4gxAIzcwxwuDqy', 'Rendi', 'rendi@gmail.com', 'Makassar', 'KASI', 'Kepala Seksi', 'image.png');
 
 --
 -- Indexes for dumped tables
@@ -90,13 +83,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `document`
 --
 ALTER TABLE `document`
-  MODIFY `id_document` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_document` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -33,7 +33,7 @@ class DocumentUtil {
         // Validasi ekstensi file
         if (in_array($fileActualExt, $allowed)) {
             if ($fileError === 0) {
-                if ($fileSize < 1000000) {
+                if ($fileSize < 10485760) {
                     // Validasi apakah direktori tujuan ada, jika tidak ada, buat direktori
                     if (!is_dir($folderDestination)) {
                         if (!mkdir($folderDestination, 0755, true)) {
@@ -118,7 +118,8 @@ class DocumentUtil {
         try{
             $filename = $this->uploadImage($file);
             $data['dokumen'] = $filename;
-            $this->validateAlphabet($data);
+            $this->validateAlphabet($data['pengirim']);
+            $this->validateAlphabet($data['penerima']);
 
             $this->modelDocument->update($data);
 
@@ -169,10 +170,9 @@ class DocumentUtil {
     }
 
     // fungsi untuk mengubah status dokumen
-    public function updateStatus($id, $status){
+    public function updateStatus($id, $reason, $status){
         try{
-            // echo $status;
-            return $this->modelDocument->updateStatus($id, $status);
+            return $this->modelDocument->updateStatus($id, $reason ,$status);
         }catch(Exception $e){
             throw new Exception($e->getMessage());
         }

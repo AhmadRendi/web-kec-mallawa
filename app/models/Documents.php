@@ -90,12 +90,14 @@ class Documents {
         }
     }
 
-    public function updateStatus($id, $status){
+    public function updateStatus($id, $reason, $status){
         try{
-            $query = "UPDATE $this->table SET status = ? WHERE id_document = ?";
+            $query = "UPDATE $this->table SET status = ?, reason = ?
+                WHERE id_document = ?";
             $this->db->query($query);
             $this->db->bind(1, $status);
-            $this->db->bind(2, $id);
+            $this->db->bind(2, $reason);
+            $this->db->bind(3, $id);
             $this->db->execute();
             return $id;
         }catch(PDOException $e){

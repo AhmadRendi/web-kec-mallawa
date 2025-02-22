@@ -29,9 +29,12 @@ class verification extends Controller{
 
             $status = 'Terverifikasi';
 
-            $response = $document->updateStatus($id, $status);
+            $reason = 'DiVerifikasi';
 
-            echo json_encode(['status' => $response]);
+            // $response = $document->updateStatus($id, $status);
+            $response = $document->updateStatus($id, $reason , $status);
+
+            echo json_encode(['status' => 'success']);
         }catch(Exception $e){
             echo json_encode(['status' => 'failed','message' => $e->getMessage()]);
         }
@@ -43,13 +46,13 @@ class verification extends Controller{
             $model = $this->model('Documents');
             $document = $this->util('DocumentUtil', $model);
 
-            $id = $_POST['id'];
+            $data = $_POST;
 
             $status = 'Ditolak';
 
-            $response = $document->updateStatus($id, $status);
+            $response = $document->updateStatus($data['id'], $data['reason'] ,$status);
 
-            echo json_encode(['status' => $id]);
+            echo json_encode(['status' => 'success']);
         }catch(Exception $e){
             echo json_encode(['status' => 'failed','message' => $e->getMessage()]);
         }

@@ -305,15 +305,25 @@
 </div>
 
 <!-- Delete Confirmation Modal -->
-<div class="modal fade" id="btlVerification" tabindex="-1">
+<div class="modal fade" id="btlVerification" tabindex="-1" aria-labelledby="reason" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-body">
-                <p>Tolak?</p>
+            <div class="modal-header">
+                <h5 class="modal-title" id="reason">Tolak</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-                <button type="button" class="btn btn-danger" id="cancelVerification">Tolak</button>
+            <div class="modal-body">
+                <form id="verificationForm" method="post">
+                    <input type="hidden" name="id" id="documentId">
+                    <div class="mb-3">
+                        <label for="reason" class="form-label">Alasan</label>
+                        <input type="text" class="form-control border border-dark" id="reason" name="reason" required>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Tolak</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -354,3 +364,26 @@
         </div>
     </div>
 </div>
+
+
+<div id="toastContainer" aria-live="polite" aria-atomic="true" style="position: absolute; top: 20px; right: 20px;">
+    <div class="toast" id="successToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Verifikasi Berhasil</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Dokumen telah diverifikasi dengan sukses.
+        </div>
+    </div>
+    <div class="toast" id="errorToast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <strong class="me-auto">Verifikasi Gagal</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body" id="errorMessage">
+            <!-- Error message will be inserted here -->
+        </div>
+    </div>
+</div>
+

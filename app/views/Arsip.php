@@ -26,6 +26,7 @@
                                 <th>Pengirim</th>
                                 <th>Penerima</th>
                                 <th>Dokumen</th>
+                                <th>Alasan</th>
                                 <th>Keterangan</th>
                             </tr>
                         </thead>
@@ -70,6 +71,11 @@
                                 <td>
                                     <h6>
                                         <?php echo htmlspecialchars($doc['document']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($doc['reason']); ?>
                                     </h6>
                                 </td>
                                 <td>

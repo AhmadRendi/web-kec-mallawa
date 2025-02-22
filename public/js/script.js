@@ -14,33 +14,35 @@ $(function () {
             method: 'post',
             dataType: 'json',
             success: function (data) {
-                console.log(data);
+                if(data.status === 'success') {
+                    location.reload();
+                }
             }
         });
         $('#successVerification').modal('hide');
     });
 
-    // cancel verification
-    let idDocumentForCancelVerification;
+    // // cancel verification
+    // let idDocumentForCancelVerification;
 
-    $('[data-bs-target="#btlVerification"]').on('click', function() {
-        idDocumentForCancelVerification = $(this).data('id');
-    });
+    // $('[data-bs-target="#btlVerification"]').on('click', function() {
+    //     idDocumentForCancelVerification = $(this).data('id');
+    // });
 
-    $('#cancelVerification').on('click', function() {
-        // console.log("masuk ke sini");
-        // console.log(idDocumentForCancelVerification);
-        $.ajax({
-            url: 'http://localhost/web-ic/public/Verification/cancelVariation',
-            data: {id : idDocumentForCancelVerification},
-            method: 'post',
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-            }
-        });
-        $('#btlVerification').modal('hide');
-    });
+    // $('#cancelVerification').on('click', function() {
+    //     console.log("masuk ke sini");
+    //     console.log(idDocumentForCancelVerification);
+    //     $.ajax({
+    //         url: 'http://localhost/web-ic/public/Verification/cancelVariation',
+    //         data: {id : idDocumentForCancelVerification},
+    //         method: 'post',
+    //         dataType: 'json',
+    //         success: function (data) {
+    //             console.log(data);
+    //         }
+    //     });
+    //     $('#btlVerification').modal('hide');
+    // });
 
     new DataTable('#data_table', {
         paging: true,
@@ -136,7 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     scales: {
                         y: {
                             beginAtZero: true,
-                            max: 70,
+                            max: data.maxCount,
                             ticks: {
                                 stepSize: 10
                             },
@@ -171,5 +173,66 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             new Chart(ctx, config);
         }
+    });
+});
+
+// Tunggu sampai DOM selesai dimuat
+document.addEventListener('DOMContentLoaded', function() {
+    // Tangkap modal
+    var modal = document.getElementById('btlVerification');
+
+    // Tangkap semua tombol yang membuka modal
+    var buttons = document.querySelectorAll('[data-bs-target="#btlVerification"]');
+
+    // Tambahkan event listener untuk setiap tombol
+    buttons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var id = this.getAttribute('data-id');
+            document.getElementById('documentId').value = id;
+        });
+    });
+
+    // Tangkap form
+    var form = document.getElementById('verificationForm');
+
+    // Tambahkan event listener untuk submit form
+    form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Mencegah form dari submit default
+
+        // Ambil data dari form
+        var data = new FormData(form);
+
+        // for (let [key, value] of data.entries()) {
+        //     console.log(`${key}:`, value);
+        // }
+
+        // console.log(data.get('id'));
+
+        // Kirim data menggunakan AJAX
+        fetch('http://localhost/web-ic/public/Verification/cancelVariation', {
+            method: 'POST',
+            body: data,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'success') {
+                var toast = new bootstrap.Toast(document.getElementById('successToast'));
+                toast.show();
+                // Tutup modal
+                var modalInstance = bootstrap.Modal.getInstance(modal);
+                modalInstance.hide();
+                // Refresh halaman atau update UI
+                location.reload();
+            } else {
+                document.getElementById('errorMessage').innerText = 'Kesalahan: ' + data.message;
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+                errorToast.show();
+            }
+        })
+        .catch(error => {
+            document.getElementById('errorMessage').innerText = 'Kesalahan: ' + data.message;
+                var errorToast = new bootstrap.Toast(document.getElementById('errorToast'));
+                errorToast.show();
+        });
     });
 });

@@ -38,9 +38,9 @@
                         <label for="kategori" class="form-label">Kategori</label>
                         <select class="form-control border border-dark" id="kategori" name="kategori" required>
                             <option style="color:rgb(0, 0, 0); font-weight: 500" value="">Pilih Kategori</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="umum">Umum</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="penting">Penting</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="rahasia">Rahasia</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Undangan">Undangan</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Surat">Surat</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Laporan">Laporan</option>
                         </select>
                     </div>
 

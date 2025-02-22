@@ -27,6 +27,7 @@
                                 <th>Penerima</th>
                                 <th>Dokumen</th>
                                 <th>Keterangan</th>
+                                <th>Alasan</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -71,6 +72,11 @@
                                 <td>
                                     <h6>
                                         <?php echo htmlspecialchars($doc['document']); ?>
+                                    </h6>
+                                </td>
+                                <td>
+                                    <h6>
+                                        <?php echo htmlspecialchars($doc['reason']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -137,9 +143,9 @@
                         <label for="editKategori" class="form-label">Kategori</label>
                         <select class="form-select border border-dark" id="editKategori" name="kategori" required>
                             <option style="color:rgb(0, 0, 0); font-weight: 500" value="">Pilih Kategori</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="umum">Umum</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="penting">Penting</option>
-                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="rahasia">Rahasia</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Undangan">Undangan</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Surat">Surat</option>
+                            <option style="color:rgb(0, 0, 0); font-weight: 500" value="Laporan">Laporan</option>
                         </select>
                     </div>
                     <div class="mb-3">
