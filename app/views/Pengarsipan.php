@@ -76,12 +76,12 @@
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['reason']); ?>
+                                        <?php echo htmlspecialchars($doc['status']); ?>
                                     </h6>
                                 </td>
                                 <td>
                                     <h6>
-                                        <?php echo htmlspecialchars($doc['status']); ?>
+                                        <?php echo htmlspecialchars($doc['reason']); ?>
                                     </h6>
                                 </td>
                                 <td>
@@ -135,8 +135,8 @@
                     <div class="mb-3">
                         <label for="editJenis" class="form-label">Jenis</label>
                         <select class="form-select border border-dark" id="editJenis" name="jenis" required>
-                            <option value="masuk">Masuk</option>
-                            <option value="keluar">Keluar</option>
+                            <option value="Masuk">Masuk</option>
+                            <option value="Keluar">Keluar</option>
                         </select>
                     </div>
                     <div class="mb-3">

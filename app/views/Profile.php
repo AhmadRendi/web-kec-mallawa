@@ -95,12 +95,12 @@
                                         <div class="mb-3">
                                             <label for="password" class="form-label">Password</label>
                                             <input type="password" class="form-control" id="password" name="password"
-                                                value="<?= $data['password'] ?>" required>
+                                                value="<?= $data['password'] ?>" readonly>
                                         </div>
                                         <div class="mb-3">
                                             <label for="position" class="form-label">Posisi</label>
                                             <input type="text" class="form-control" id="position" name="position"
-                                                value="<?= $data['position'] ?>" required>
+                                                value="<?= $data['position'] ?>" readonly>
                                         </div>
                                         <div class="mb-3">
                                             <label for="address" class="form-label">Alamat</label>
